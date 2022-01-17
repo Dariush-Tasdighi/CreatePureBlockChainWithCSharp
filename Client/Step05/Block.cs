@@ -2,20 +2,21 @@
 {
 	public class Block : object
 	{
-		public Block(int blockNumber, Transaction transaction, string? parentHash = null) : base()
+		public Block(int blockNumber,
+			Transaction transaction, string? parentHash = null) : base()
 		{
 			ParentHash = parentHash;
 			BlockNumber = blockNumber;
 			Transaction = transaction;
 		}
 
+		public int BlockNumber { get; }
+
+		public string? ParentHash { get; }
+
+		public Transaction Transaction { get; }
+
 		public string? MixHash { get; protected set; }
-
-		public int BlockNumber { get; protected set; }
-
-		public string? ParentHash { get; protected set; }
-
-		public Transaction Transaction { get; protected set; }
 
 		public System.DateTime? Timestamp { get; protected set; }
 

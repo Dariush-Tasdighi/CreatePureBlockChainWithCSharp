@@ -2,8 +2,9 @@
 {
 	public class Transaction : object
 	{
-		public Transaction(int id, TransactionType type, int amount,
-			string recipientAccountAddress, string? senderAccountAddress = null) : base()
+		public Transaction(int id, TransactionType type,
+			int amount, string recipientAccountAddress,
+			string? senderAccountAddress = null) : base()
 		{
 			Id = id;
 			Type = type;
@@ -12,15 +13,15 @@
 			RecipientAccountAddress = recipientAccountAddress;
 		}
 
-		public int Id { get; protected set; }
+		public int Id { get; }
 
-		public int Amount { get; protected set; }
+		public int Amount { get; }
 
-		public TransactionType Type { get; protected set; }
+		public TransactionType Type { get; }
 
-		public string? SenderAccountAddress { get; protected set; }
+		public string? SenderAccountAddress { get; }
 
-		public string RecipientAccountAddress { get; protected set; }
+		public string RecipientAccountAddress { get; }
 
 		public override string ToString()
 		{

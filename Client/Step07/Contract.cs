@@ -2,10 +2,10 @@
 {
 	public class Contract : object
 	{
-		public Contract(int currentDifficulty = 0, int maxTransactionCount = 2) : base()
+		public Contract(int currentDifficulty = 0, int maxTransactionCountPerBlock = 2) : base()
 		{
 			CurrentDifficulty = currentDifficulty;
-			MaxTransactionCount = maxTransactionCount;
+			MaxTransactionCountPerBlock = maxTransactionCountPerBlock;
 
 			Blocks =
 				new System.Collections.Generic.List<Block>();
@@ -15,7 +15,9 @@
 
 		public int CurrentDifficulty { get; set; }
 
-		public int MaxTransactionCount { get; set; }
+		// **********
+		public int MaxTransactionCountPerBlock { get; set; }
+		// **********
 
 		public System.Collections.Generic.IList<Block> Blocks { get; }
 
@@ -25,7 +27,7 @@
 				GetNotMinedBlock();
 
 			if ((block == null) ||
-				(block.Transactions.Count >= MaxTransactionCount))
+				(block.Transactions.Count >= MaxTransactionCountPerBlock))
 			{
 				block =
 					CreateEmptyBlock();
@@ -65,7 +67,7 @@
 			}
 
 			var newBlock =
-				new Block(blockNumber: Blocks.Count,
+				new Block(blockNumber: blockNumber,
 				difficulty: CurrentDifficulty, parentHash: parentBlock?.MixHash);
 
 			Blocks.Add(newBlock);
@@ -82,7 +84,15 @@
 
 			int balance = 0;
 
-			foreach (var block in Blocks)
+			// **********
+			var blocks =
+				Blocks
+				.Where(current => current.IsMined())
+				.ToList()
+				;
+			// **********
+
+			foreach (var block in blocks)
 			{
 				foreach (var transaction in block.Transactions)
 				{
@@ -105,10 +115,18 @@
 
 		public bool IsValid()
 		{
-			for (int index = 1; index <= Blocks.Count - 1; index++)
+			// **********
+			var blocks =
+				Blocks
+				.Where(current => current.IsMined())
+				.ToList()
+				;
+			// **********
+
+			for (int index = 1; index <= blocks.Count - 1; index++)
 			{
-				var currentBlock = Blocks[index];
-				var parentBlock = Blocks[index - 1];
+				var currentBlock = blocks[index];
+				var parentBlock = blocks[index - 1];
 
 				if (currentBlock.MixHash != currentBlock.CalculateMixHash())
 				{
@@ -122,6 +140,29 @@
 			}
 
 			return true;
+		}
+
+		public Block? MineTheFirstNotMinedBlock()
+		{
+			var block =
+				GetTheFirstNotMinedBlock();
+
+			if(block == null)
+			{
+				return null;
+			}
+
+			block.ParentHash = 
+		}
+
+		private Block? GetTheFirstNotMinedBlock()
+		{
+			var result =
+				Blocks
+				.Where(current => current.IsMined() == false)
+				.FirstOrDefault();
+
+			return result;
 		}
 
 		public override string ToString()

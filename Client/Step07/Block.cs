@@ -12,21 +12,24 @@
 				new System.Collections.Generic.List<Transaction>();
 		}
 
+		public int BlockNumber { get; }
+
+		public int Difficulty { get; }
+
+		public string? ParentHash { get; }
+
 		public int Nonce { get; protected set; }
 
-		public int Difficulty { get; protected set; }
-
-		public int BlockNumber { get; protected set; }
-
 		public string? MixHash { get; protected set; }
-
-		public string? ParentHash { get; protected set; }
 
 		public System.TimeSpan? Duration { get; protected set; }
 
 		public System.DateTime? Timestamp { get; protected set; }
 
+		// **********
+		//public Transaction Transaction { get; }
 		public System.Collections.Generic.IList<Transaction> Transactions { get; }
+		// **********
 
 		public bool IsMined()
 		{

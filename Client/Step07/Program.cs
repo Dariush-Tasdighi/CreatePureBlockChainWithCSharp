@@ -62,10 +62,46 @@
 			contract.AddTransaction(transaction3);
 			// **************************************************
 
-			System.Console.WriteLine(contract.ToString());
+			//System.Console.WriteLine(contract.ToString());
 
 			// **************************************************
 			int dariushTasdighiBalance =
+				contract.GetAccountBalance
+				(accountAddress: dariushTasdighiAccount.Address);
+
+			System.Console.WriteLine($"{dariushTasdighiAccount.FullName} Balance: {dariushTasdighiBalance}");
+			// **************************************************
+
+			// **************************************************
+			var notMinedBlock =
+				contract.GetTheFirstNotMinedBlock();
+
+			if (notMinedBlock != null)
+			{
+				notMinedBlock.Mine();
+			}
+
+			//System.Console.WriteLine(contract.ToString());
+
+			dariushTasdighiBalance =
+				contract.GetAccountBalance
+				(accountAddress: dariushTasdighiAccount.Address);
+
+			System.Console.WriteLine($"{dariushTasdighiAccount.FullName} Balance: {dariushTasdighiBalance}");
+			// **************************************************
+
+			// **************************************************
+			notMinedBlock =
+				contract.GetTheFirstNotMinedBlock();
+
+			if (notMinedBlock != null)
+			{
+				notMinedBlock.Mine();
+			}
+
+			System.Console.WriteLine(contract.ToString());
+
+			dariushTasdighiBalance =
 				contract.GetAccountBalance
 				(accountAddress: dariushTasdighiAccount.Address);
 

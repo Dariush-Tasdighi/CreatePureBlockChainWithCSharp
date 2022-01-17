@@ -7,9 +7,9 @@
 			Address = address;
 		}
 
-		public string? FullName { get; set; }
+		public string Address { get; }
 
-		public string Address { get; protected set; }
+		public string? FullName { get; set; }
 
 		public override string ToString()
 		{

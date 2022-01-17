@@ -3,7 +3,7 @@
 	public class Block : object
 	{
 		public Block(int blockNumber, Transaction transaction,
-			int difficulty, string? parentHash = null) : base()
+			int difficulty = 0, string? parentHash = null) : base()
 		{
 			ParentHash = parentHash;
 			BlockNumber = blockNumber;
@@ -14,20 +14,20 @@
 			// **********
 		}
 
+		public int BlockNumber { get; }
+
+		public string? ParentHash { get; }
+
+		public Transaction Transaction { get; }
+
 		public string? MixHash { get; protected set; }
-
-		public int BlockNumber { get; protected set; }
-
-		public string? ParentHash { get; protected set; }
-
-		public Transaction Transaction { get; protected set; }
 
 		public System.DateTime? Timestamp { get; protected set; }
 
 		// **********
-		public int Nonce { get; protected set; }
+		public int Difficulty { get; }
 
-		public int Difficulty { get; protected set; }
+		public int Nonce { get; protected set; }
 
 		public System.TimeSpan? Duration { get; protected set; }
 		// **********
