@@ -1,4 +1,4 @@
-﻿namespace Client.Step03
+﻿namespace Client.Step07
 {
 	public class Account : object
 	{
@@ -7,9 +7,9 @@
 			Address = address;
 		}
 
-		public string Address { get; }
-
 		public string? FullName { get; set; }
+
+		public string Address { get; protected set; }
 
 		public override string ToString()
 		{

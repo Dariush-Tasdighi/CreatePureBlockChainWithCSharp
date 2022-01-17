@@ -44,8 +44,8 @@
 			// **************************************************
 			var transaction2 =
 				new Transaction(id: 2, amount: 20,
-				recipientAccountAddress: dariushTasdighiAccount.Address,
-				senderAccountAddress: aliRezaAlaviAccount.Address);
+				senderAccountAddress: aliRezaAlaviAccount.Address,
+				recipientAccountAddress: dariushTasdighiAccount.Address);
 
 			contract.AddTransactionAndMineBlock(transaction2);
 			// **************************************************
@@ -53,8 +53,8 @@
 			// **************************************************
 			var transaction3 =
 				new Transaction(id: 3, amount: 5,
-				recipientAccountAddress: saraAhmadiAccount.Address,
-				senderAccountAddress: dariushTasdighiAccount.Address);
+				senderAccountAddress: dariushTasdighiAccount.Address,
+				recipientAccountAddress: saraAhmadiAccount.Address);
 
 			contract.AddTransactionAndMineBlock(transaction3);
 			// **************************************************
@@ -74,7 +74,18 @@
 			// کماکان سامانه به درستی کار می‌کند و هکر به هدف خود خواهد رسید
 			// لذا می‌خواهیم یک تابع در کلاس قرارداد ایجاد نماییم که از معتبر بودن زنجیره بلاک‌ها
 			// اطمینان حاصل کنیم و زمانی که می‌خواهیم موجودی حساب کیف پول شخصی را بدست آوریم
-			// قبل از آن ابتدا اعتبارسنجی می‌کنیم
+			// قبل از آن ابتدا اعتبارسنجی کنیم
+
+			// **************************************************
+			// کاری که هکر انجام می‌دهد
+			contract.Blocks[1].Transaction.Amount = 100;
+
+			dariushTasdighiBalance =
+				contract.GetAccountBalance
+				(accountAddress: dariushTasdighiAccount.Address);
+
+			System.Console.WriteLine($"{dariushTasdighiAccount.FullName} Balance: {dariushTasdighiBalance}");
+			// **************************************************
 		}
 	}
 }

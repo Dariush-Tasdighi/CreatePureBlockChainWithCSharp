@@ -15,28 +15,22 @@
 
 		public void AddTransactionAndMineBlock(Transaction transaction)
 		{
+			Block? parentBlock = null;
 			int blockNumber = Blocks.Count;
 
-			Block block;
-
-			if (blockNumber == 0)
+			if (blockNumber != 0)
 			{
-				block =
-					new Block(blockNumber: Blocks.Count, transaction: transaction);
-			}
-			else
-			{
-				var previousBlock =
+				parentBlock =
 					Blocks[blockNumber - 1];
-
-				block =
-					new Block(blockNumber: Blocks.Count,
-					transaction: transaction, parentHash: previousBlock.MixHash);
 			}
 
-			Blocks.Add(block);
+			var newBlock =
+				new Block(blockNumber: blockNumber,
+				transaction: transaction, parentHash: parentBlock?.MixHash);
 
-			block.Mine();
+			Blocks.Add(newBlock);
+
+			newBlock.Mine();
 		}
 
 		public int GetAccountBalance(string accountAddress)
@@ -47,12 +41,14 @@
 			{
 				if (block.Transaction.RecipientAccountAddress == accountAddress)
 				{
-					balance += block.Transaction.Amount;
+					balance +=
+						block.Transaction.Amount;
 				}
 
 				if (block.Transaction.SenderAccountAddress == accountAddress)
 				{
-					balance -= block.Transaction.Amount;
+					balance -=
+						block.Transaction.Amount;
 				}
 			}
 

@@ -6,7 +6,8 @@
 		{
 		}
 
-		public static string ConvertObjectToJson(object theObject, bool writeIndented = true)
+		public static string ConvertObjectToJson
+			(object theObject, bool writeIndented = true)
 		{
 			var options =
 				new System.Text.Json.JsonSerializerOptions
@@ -22,17 +23,17 @@
 
 		public static string GetSha256(string text)
 		{
+			var inputBytes =
+				System.Text.Encoding.UTF8.GetBytes(s: text);
+
 			var sha =
 				System.Security.Cryptography.SHA256.Create();
-
-			var inputBytes =
-				System.Text.Encoding.UTF8.GetBytes(text);
 
 			var outputBytes =
 				sha.ComputeHash(buffer: inputBytes);
 
 			var result =
-				System.Convert.ToBase64String(outputBytes);
+				System.Convert.ToBase64String(inArray: outputBytes);
 
 			return result;
 		}

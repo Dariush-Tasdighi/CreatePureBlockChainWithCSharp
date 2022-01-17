@@ -1,4 +1,4 @@
-﻿namespace Client.Step06
+﻿namespace Client.Step07
 {
 	public static class Program
 	{
@@ -8,7 +8,7 @@
 
 		public static void Main()
 		{
-			System.Console.WriteLine("Step (6)");
+			System.Console.WriteLine("Step (7)");
 
 			// **************************************************
 			var dariushTasdighiAccount =
@@ -30,49 +30,36 @@
 				};
 			// **************************************************
 
-			// **********
 			var contract =
-				new Contract();
-
-			//var contract =
-			//	new Contract(currentDifficulty: 1);
-
-			//var contract =
-			//	new Contract(currentDifficulty: 2);
-
-			//var contract =
-			//	new Contract(currentDifficulty: 3);
-			// **********
+				new Contract(currentDifficulty: 2);
 
 			// **************************************************
 			var transaction1 =
-				new Transaction(id: 1, amount: 10,
+				new Transaction(id: 1,
+				amount: 10, type: TransactionType.Charging,
 				recipientAccountAddress: dariushTasdighiAccount.Address);
 
-			contract.AddTransactionAndMineBlock(transaction1);
+			contract.AddTransaction(transaction1);
 			// **************************************************
 
 			// **************************************************
 			var transaction2 =
-				new Transaction(id: 2, amount: 20,
+				new Transaction(id: 2,
+				amount: 20, type: TransactionType.Charging,
 				recipientAccountAddress: dariushTasdighiAccount.Address,
 				senderAccountAddress: aliRezaAlaviAccount.Address);
 
-			contract.AddTransactionAndMineBlock(transaction2);
+			contract.AddTransaction(transaction2);
 			// **************************************************
-
-			// **********
-			// !روی دستگاه من، تقریبا دو دقیقه طول می‌کشد
-			//contract.CurrentDifficulty = 3;
-			// **********
 
 			// **************************************************
 			var transaction3 =
-				new Transaction(id: 3, amount: 5,
+				new Transaction(id: 3,
+				amount: 5, type: TransactionType.Charging,
 				recipientAccountAddress: saraAhmadiAccount.Address,
 				senderAccountAddress: dariushTasdighiAccount.Address);
 
-			contract.AddTransactionAndMineBlock(transaction3);
+			contract.AddTransaction(transaction3);
 			// **************************************************
 
 			System.Console.WriteLine(contract.ToString());
@@ -84,16 +71,6 @@
 
 			System.Console.WriteLine($"{dariushTasdighiAccount.FullName} Balance: {dariushTasdighiBalance}");
 			// **************************************************
-
-			// از آن‌جایی که هزینه و زمان استخراج قابل توجه می‌باشد، شاید صرفی نداشته باشد
-			// تا در هر بلاک صرفا یک تراکنش قرار دهیم و شاید بهتر باشد که در داخل هر بلاک
-			// تعدادی تراکنش قرار دهیم
-
-			// واقعیت آن است که معمولا در بلاک‌چین‌هایی مانند اتریوم و بین‌کین و غیره
-			// در داخل هر بلاک، صرفا یک تراکنش قرار نمی‌دهند
-
-			// حال می‌خواهیم تراکنش موجود در بلاک خود را به فهرستی از تراکنش‌ها تبدیل کرده
-			// و مثلا بعد از درج شدن چند تراکنش، نسبت به استخراج آن اقدام نماییم
 		}
 	}
 }

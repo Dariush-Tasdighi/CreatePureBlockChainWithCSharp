@@ -44,8 +44,8 @@
 			// **************************************************
 			var transaction2 =
 				new Transaction(id: 2, amount: 20,
-				recipientAccountAddress: dariushTasdighiAccount.Address,
-				senderAccountAddress: aliRezaAlaviAccount.Address);
+				senderAccountAddress: aliRezaAlaviAccount.Address,
+				recipientAccountAddress: dariushTasdighiAccount.Address);
 
 			transactions.Add(transaction2);
 			// **************************************************
@@ -53,8 +53,8 @@
 			// **************************************************
 			var transaction3 =
 				new Transaction(id: 3, amount: 5,
-				recipientAccountAddress: saraAhmadiAccount.Address,
-				senderAccountAddress: dariushTasdighiAccount.Address);
+				senderAccountAddress: dariushTasdighiAccount.Address,
+				recipientAccountAddress: saraAhmadiAccount.Address);
 
 			transactions.Add(transaction3);
 			// **************************************************

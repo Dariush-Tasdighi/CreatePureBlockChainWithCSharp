@@ -13,14 +13,19 @@
 		public int Balance { get; set; }
 
 		/// <summary>
+		/// Id
+		/// </summary>
+		public string Address { get; }
+
+		/// <summary>
 		/// <Nullable>enable</Nullable>
 		/// </summary>
 		public string? FullName { get; set; }
 
-		/// <summary>
-		/// Id
-		/// </summary>
-		public string Address { get; protected set; }
+		//public override string ToString()
+		//{
+		//	return base.ToString();
+		//}
 
 		public override string ToString()
 		{

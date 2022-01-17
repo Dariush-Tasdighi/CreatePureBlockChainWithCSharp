@@ -2,7 +2,8 @@
 {
 	public class Block : object
 	{
-		public Block(int blockNumber, Transaction transaction, string? parentHash = null) : base()
+		public Block(int blockNumber,
+			Transaction transaction, string? parentHash = null) : base()
 		{
 			ParentHash = parentHash;
 			BlockNumber = blockNumber;
@@ -10,24 +11,24 @@
 		}
 
 		/// <summary>
-		/// Hash
-		/// </summary>
-		public string? MixHash { get; protected set; }
-
-		/// <summary>
 		/// Index
 		/// </summary>
-		public int BlockNumber { get; protected set; }
+		public int BlockNumber { get; }
 
 		/// <summary>
 		/// PreviousHash
 		/// </summary>
-		public string? ParentHash { get; protected set; }
+		public string? ParentHash { get; }
 
 		/// <summary>
 		/// Data
 		/// </summary>
-		public Transaction Transaction { get; protected set; }
+		public Transaction Transaction { get; }
+
+		/// <summary>
+		/// Hash
+		/// </summary>
+		public string? MixHash { get; protected set; }
 
 		/// <summary>
 		/// MineTime
@@ -46,8 +47,29 @@
 
 		public string CalculateMixHash()
 		{
-			// روش ایجاد یک رشته به شکل ذیل کاملا غیرحرفه‌ای و احمقانه است
-			// فقط برای خواناتر شدن سورس‌کد در هنگام تدریس به شکل ذیل نوشته شده است
+			// **************************************************
+			//string temp =
+			//	"BlockNumber:" + BlockNumber; // "BlockNumber:1"
+
+			//string temp =
+			//	string.Format("BlockNumber:{0}", BlockNumber);
+
+			//string temp =
+			//	$"BlockNumber:{BlockNumber}";
+
+			// اگر در نوشتن نام متغیر در رشته سوتی بدهیم، کامپایلر هیچ خطایی نمی‌دهد
+			//string temp =
+			//	$"BlackNamber:{BlockNumber}"; // "BlackNamber:1"
+
+			//string temp =
+			//	$"{nameof(BlockNumber)}:{BlockNumber}";
+
+			//string temp =
+			//	$"{nameof(BlackNamber)}:{BlockNumber}";
+			// **************************************************
+
+			// روش ایجاد یک رشته به شکل ذیل، کاملا غیرحرفه‌ای و احمقانه است
+			// فقط برای خواناتر شدن سورس‌کد، در هنگام تدریس، به شکل ذیل نوشته شده است
 			string text =
 				$"{nameof(BlockNumber)}:{BlockNumber}" +
 				"|" +
@@ -57,6 +79,9 @@
 				"|" +
 				$"{nameof(Transaction)}:{Transaction}"
 				;
+
+			//string text =
+			//	$"{nameof(BlockNumber)}:{BlockNumber}|{nameof(Timestamp)}:{Timestamp}|{nameof(ParentHash)}:{ParentHash}|{nameof(Transaction)}:{Transaction}";
 
 			string result =
 				Infrastructure.Utility.GetSha256(text: text);

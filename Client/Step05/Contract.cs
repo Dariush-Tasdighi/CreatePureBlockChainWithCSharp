@@ -1,8 +1,5 @@
 ﻿namespace Client.Step05
 {
-	/// <summary>
-	/// BlockChain
-	/// </summary>
 	public class Contract : object
 	{
 		public Contract() : base()
