@@ -1,0 +1,88 @@
+﻿namespace Client.Step06
+{
+	public static class Program
+	{
+		static Program()
+		{
+		}
+
+		public static void Main()
+		{
+			System.Console.WriteLine("Step (6)");
+
+			// **************************************************
+			var dariushTasdighiAccount =
+				new Account(address: "1")
+				{
+					FullName = "Dariush Tasdighi",
+				};
+
+			var aliRezaAlaviAccount =
+				new Account(address: "2")
+				{
+					FullName = "Ali Reza Alavi",
+				};
+
+			var saraAhmadiAccount =
+				new Account(address: "3")
+				{
+					FullName = "Sara Ahmadi",
+				};
+			// **************************************************
+
+			// **********
+			var contract =
+				new Contract();
+
+			//var contract =
+			//	new Contract(currentDifficulty: 1);
+
+			//var contract =
+			//	new Contract(currentDifficulty: 2);
+
+			//var contract =
+			//	new Contract(currentDifficulty: 3);
+			// **********
+
+			// **************************************************
+			var transaction1 =
+				new Transaction(id: 1, amount: 10,
+				recipientAccountAddress: dariushTasdighiAccount.Address);
+
+			contract.AddTransactionAndMineBlock(transaction1);
+			// **************************************************
+
+			// **************************************************
+			var transaction2 =
+				new Transaction(id: 2, amount: 20,
+				recipientAccountAddress: dariushTasdighiAccount.Address,
+				senderAccountAddress: aliRezaAlaviAccount.Address);
+
+			contract.AddTransactionAndMineBlock(transaction2);
+			// **************************************************
+
+			// **********
+			//contract.CurrentDifficulty = 3;
+			// **********
+
+			// **************************************************
+			var transaction3 =
+				new Transaction(id: 3, amount: 5,
+				recipientAccountAddress: saraAhmadiAccount.Address,
+				senderAccountAddress: dariushTasdighiAccount.Address);
+
+			contract.AddTransactionAndMineBlock(transaction3);
+			// **************************************************
+
+			System.Console.WriteLine(contract.ToString());
+
+			// **************************************************
+			int dariushTasdighiBalance =
+				contract.GetAccountBalance
+				(accountAddress: dariushTasdighiAccount.Address);
+
+			System.Console.WriteLine($"{dariushTasdighiAccount.FullName} Balance: {dariushTasdighiBalance}");
+			// **************************************************
+		}
+	}
+}

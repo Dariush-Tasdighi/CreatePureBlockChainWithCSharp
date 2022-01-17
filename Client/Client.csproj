@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<OutputType>Exe</OutputType>
+		<TargetFramework>net6.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+		<StartupObject>Client.Step06.Program</StartupObject>
+	</PropertyGroup>
+
+	<ItemGroup>
+	  <None Remove="Step02\Program.cs~RF28976e0.TMP" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Folder Include="Documents\" />
+	</ItemGroup>
+
+</Project>
