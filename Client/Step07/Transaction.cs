@@ -2,18 +2,21 @@
 {
 	public class Transaction : object
 	{
-		public Transaction(int id, TransactionType type,
+		public Transaction(TransactionType type,
 			int amount, string recipientAccountAddress,
 			string? senderAccountAddress = null) : base()
 		{
-			Id = id;
+			Id = System.Guid.NewGuid();
+
 			Type = type;
 			Amount = amount;
 			SenderAccountAddress = senderAccountAddress;
 			RecipientAccountAddress = recipientAccountAddress;
 		}
 
-		public int Id { get; }
+		// **********
+		public System.Guid Id { get; }
+		// **********
 
 		public int Amount { get; }
 

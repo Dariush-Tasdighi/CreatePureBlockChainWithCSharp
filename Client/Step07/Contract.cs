@@ -2,39 +2,36 @@
 {
 	public class Contract : object
 	{
-		public Contract(int currentDifficulty = 0, int maxTransactionCountPerBlock = 2) : base()
+		public Contract(int currentDifficulty = 0) : base()
 		{
 			CurrentDifficulty = currentDifficulty;
-			MaxTransactionCountPerBlock = maxTransactionCountPerBlock;
 
 			Blocks =
 				new System.Collections.Generic.List<Block>();
+
+			// **********
+			_pendingTransactions =
+				new System.Collections.Generic.List<Transaction>();
+			// **********
 
 			CreateGenesisBlock();
 		}
 
 		public int CurrentDifficulty { get; set; }
 
-		// **********
-		public int MaxTransactionCountPerBlock { get; set; }
-		// **********
-
 		public System.Collections.Generic.IList<Block> Blocks { get; }
 
-		public void AddTransaction(Transaction transaction)
+		// **********
+		private System.Collections.Generic.List<Transaction> _pendingTransactions;
+
+		public System.Collections.Generic.IReadOnlyList<Transaction> PendingTransactions
 		{
-			var block =
-				GetNotMinedBlock();
-
-			if ((block == null) ||
-				(block.Transactions.Count >= MaxTransactionCountPerBlock))
+			get
 			{
-				block =
-					CreateEmptyBlock();
+				return _pendingTransactions;
 			}
-
-			block.Transactions.Add(transaction);
 		}
+		// **********
 
 		private Block CreateGenesisBlock()
 		{
@@ -42,17 +39,6 @@
 				CreateEmptyBlock();
 
 			return genesisBlock;
-		}
-
-		private Block? GetNotMinedBlock()
-		{
-			var result =
-				Blocks
-				.Where(current => current.IsMined() == false)
-				.OrderBy(current => current.BlockNumber)
-				.FirstOrDefault();
-
-			return result;
 		}
 
 		private Block CreateEmptyBlock()
@@ -75,6 +61,36 @@
 			return newBlock;
 		}
 
+		public void AddTransaction(Transaction transaction)
+		{
+			_pendingTransactions.Add(transaction);
+		}
+
+		public Block? Mine()
+		{
+			var block =
+				Blocks[Blocks.Count - 1];
+
+			if (block.IsMined())
+			{
+				return null;
+			}
+
+			foreach (var transaction in PendingTransactions)
+			{
+				block.Transactions.Add(transaction);
+			}
+
+			_pendingTransactions =
+				new System.Collections.Generic.List<Transaction>();
+
+			block.Mine();
+
+			CreateEmptyBlock();
+
+			return block;
+		}
+
 		public int GetAccountBalance(string accountAddress)
 		{
 			if (IsValid() == false)
@@ -82,15 +98,13 @@
 				return 0;
 			}
 
-			int balance = 0;
-
-			// **********
 			var blocks =
 				Blocks
 				.Where(current => current.IsMined())
 				.ToList()
 				;
-			// **********
+
+			int balance = 0;
 
 			foreach (var block in blocks)
 			{
@@ -115,20 +129,21 @@
 
 		public bool IsValid()
 		{
-			// **********
 			var blocks =
 				Blocks
 				.Where(current => current.IsMined())
 				.ToList()
 				;
-			// **********
 
 			for (int index = 1; index <= blocks.Count - 1; index++)
 			{
 				var currentBlock = blocks[index];
 				var parentBlock = blocks[index - 1];
 
-				if (currentBlock.MixHash != currentBlock.CalculateMixHash())
+				var currentMixHash =
+					currentBlock.CalculateMixHash();
+
+				if (currentBlock.MixHash != currentMixHash)
 				{
 					return false;
 				}
@@ -140,29 +155,6 @@
 			}
 
 			return true;
-		}
-
-		public Block? MineTheFirstNotMinedBlock()
-		{
-			var block =
-				GetTheFirstNotMinedBlock();
-
-			if(block == null)
-			{
-				return null;
-			}
-
-			block.ParentHash = 
-		}
-
-		private Block? GetTheFirstNotMinedBlock()
-		{
-			var result =
-				Blocks
-				.Where(current => current.IsMined() == false)
-				.FirstOrDefault();
-
-			return result;
 		}
 
 		public override string ToString()

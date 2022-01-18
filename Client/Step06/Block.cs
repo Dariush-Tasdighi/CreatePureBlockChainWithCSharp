@@ -44,14 +44,15 @@
 			var startTime =
 				System.DateTime.Now;
 
+			Nonce = -1;
 			string mixHash;
 
 			do
 			{
+				Nonce++;
+
 				mixHash =
 					CalculateMixHash();
-
-				Nonce++;
 			} while (mixHash.StartsWith(leadingZeros) == false);
 
 			MixHash = mixHash;

@@ -33,38 +33,42 @@
 			var contract =
 				new Contract(currentDifficulty: 2);
 
+			Transaction transaction;
+
 			// **************************************************
-			var transaction1 =
-				new Transaction(id: 1,
-				amount: 10, type: TransactionType.Charging,
+			transaction =
+				new Transaction(amount: 10,
+				type: TransactionType.Charging,
 				recipientAccountAddress: dariushTasdighiAccount.Address);
 
-			contract.AddTransaction(transaction1);
+			contract.AddTransaction(transaction);
 			// **************************************************
 
 			// **************************************************
-			var transaction2 =
-				new Transaction(id: 2,
-				amount: 20, type: TransactionType.Charging,
+			transaction =
+				new Transaction(amount: 20,
+				type: TransactionType.Charging,
 				recipientAccountAddress: dariushTasdighiAccount.Address,
 				senderAccountAddress: aliRezaAlaviAccount.Address);
 
-			contract.AddTransaction(transaction2);
+			contract.AddTransaction(transaction);
 			// **************************************************
 
 			// **************************************************
-			var transaction3 =
-				new Transaction(id: 3,
-				amount: 5, type: TransactionType.Charging,
+			transaction =
+				new Transaction(amount: 5,
+				type: TransactionType.Charging,
 				recipientAccountAddress: saraAhmadiAccount.Address,
 				senderAccountAddress: dariushTasdighiAccount.Address);
 
-			contract.AddTransaction(transaction3);
+			contract.AddTransaction(transaction);
 			// **************************************************
 
-			//System.Console.WriteLine(contract.ToString());
-
 			// **************************************************
+			// Step (1)
+			// **************************************************
+			System.Console.WriteLine(contract.ToString());
+
 			int dariushTasdighiBalance =
 				contract.GetAccountBalance
 				(accountAddress: dariushTasdighiAccount.Address);
@@ -73,39 +77,63 @@
 			// **************************************************
 
 			// **************************************************
-			var notMinedBlock =
-				contract.GetTheFirstNotMinedBlock();
-
-			if (notMinedBlock != null)
-			{
-				notMinedBlock.Mine();
-			}
+			// Step (2)
+			// **************************************************
+			//contract.Mine();
 
 			//System.Console.WriteLine(contract.ToString());
 
-			dariushTasdighiBalance =
-				contract.GetAccountBalance
-				(accountAddress: dariushTasdighiAccount.Address);
+			//int dariushTasdighiBalance =
+			//	contract.GetAccountBalance
+			//	(accountAddress: dariushTasdighiAccount.Address);
 
-			System.Console.WriteLine($"{dariushTasdighiAccount.FullName} Balance: {dariushTasdighiBalance}");
+			//System.Console.WriteLine($"{dariushTasdighiAccount.FullName} Balance: {dariushTasdighiBalance}");
 			// **************************************************
 
 			// **************************************************
-			notMinedBlock =
-				contract.GetTheFirstNotMinedBlock();
+			// Step (3)
+			// **************************************************
+			//contract.Mine();
 
-			if (notMinedBlock != null)
-			{
-				notMinedBlock.Mine();
-			}
+			//transaction =
+			//	new Transaction(amount: 15,
+			//	type: TransactionType.Charging,
+			//	recipientAccountAddress: dariushTasdighiAccount.Address,
+			//	senderAccountAddress: aliRezaAlaviAccount.Address);
 
-			System.Console.WriteLine(contract.ToString());
+			//contract.AddTransaction(transaction);
 
-			dariushTasdighiBalance =
-				contract.GetAccountBalance
-				(accountAddress: dariushTasdighiAccount.Address);
+			//System.Console.WriteLine(contract.ToString());
 
-			System.Console.WriteLine($"{dariushTasdighiAccount.FullName} Balance: {dariushTasdighiBalance}");
+			//int dariushTasdighiBalance =
+			//	contract.GetAccountBalance
+			//	(accountAddress: dariushTasdighiAccount.Address);
+
+			//System.Console.WriteLine($"{dariushTasdighiAccount.FullName} Balance: {dariushTasdighiBalance}");
+			// **************************************************
+
+			// **************************************************
+			// Step (4)
+			// **************************************************
+			//contract.Mine();
+
+			//transaction =
+			//	new Transaction(amount: 15,
+			//	type: TransactionType.Charging,
+			//	recipientAccountAddress: dariushTasdighiAccount.Address,
+			//	senderAccountAddress: aliRezaAlaviAccount.Address);
+
+			//contract.AddTransaction(transaction);
+
+			//contract.Mine();
+
+			//System.Console.WriteLine(contract.ToString());
+
+			//int dariushTasdighiBalance =
+			//	contract.GetAccountBalance
+			//	(accountAddress: dariushTasdighiAccount.Address);
+
+			//System.Console.WriteLine($"{dariushTasdighiAccount.FullName} Balance: {dariushTasdighiBalance}");
 			// **************************************************
 		}
 	}

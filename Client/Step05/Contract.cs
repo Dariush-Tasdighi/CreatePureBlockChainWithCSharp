@@ -64,7 +64,10 @@
 				var currentBlock = Blocks[index];
 				var parentBlock = Blocks[index - 1];
 
-				if (currentBlock.MixHash != currentBlock.CalculateMixHash())
+				var currentMixHash =
+					currentBlock.CalculateMixHash();
+
+				if (currentBlock.MixHash != currentMixHash)
 				{
 					return false;
 				}

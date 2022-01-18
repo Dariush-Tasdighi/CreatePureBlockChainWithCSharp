@@ -2,7 +2,8 @@
 {
 	public class Block : object
 	{
-		public Block(int blockNumber, int difficulty, string? parentHash = null) : base()
+		public Block(int blockNumber,
+			int difficulty, string? parentHash = null) : base()
 		{
 			Difficulty = difficulty;
 			ParentHash = parentHash;
@@ -50,14 +51,15 @@
 			var startTime =
 				System.DateTime.Now;
 
+			Nonce = -1;
 			string mixHash;
 
 			do
 			{
+				Nonce++;
+
 				mixHash =
 					CalculateMixHash();
-
-				Nonce++;
 			} while (mixHash.StartsWith(leadingZeros) == false);
 
 			MixHash = mixHash;
