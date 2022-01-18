@@ -6,6 +6,17 @@
 		{
 		}
 
+		public static System.DateTime Now
+		{
+			get
+			{
+				var result =
+					System.DateTime.UtcNow;
+
+				return result;
+			}
+		}
+
 		public static string ConvertObjectToJson
 			(object theObject, bool writeIndented = true)
 		{
