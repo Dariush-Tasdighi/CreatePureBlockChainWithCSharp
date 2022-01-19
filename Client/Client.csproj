@@ -10,7 +10,6 @@
 
 	<ItemGroup>
 		<Folder Include="Documents\" />
-		<Folder Include="Introduction02\" />
 	</ItemGroup>
 
 </Project>
