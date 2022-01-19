@@ -46,6 +46,9 @@
 			var result =
 				System.Convert.ToBase64String(inArray: outputBytes);
 
+			sha.Dispose();
+			//sha = null;
+
 			return result;
 		}
 	}

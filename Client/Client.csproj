@@ -9,11 +9,8 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-	  <None Remove="Step02\Program.cs~RF28976e0.TMP" />
-	</ItemGroup>
-
-	<ItemGroup>
 		<Folder Include="Documents\" />
+		<Folder Include="Introduction02\" />
 	</ItemGroup>
 
 </Project>
