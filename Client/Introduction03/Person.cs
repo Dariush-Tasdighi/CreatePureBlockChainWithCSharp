@@ -8,10 +8,26 @@
 
 		public int Age { get; set; }
 
-		public bool IsActive { get; set; }
+		public string? FullName { get; set; }
 
-		public string FullName { get; set; }
+		//public override string ToString()
+		//{
+		//	return base.ToString();
+		//}
 
-		public System.Collections.Generic.IList<string> FavoriteColors { get; set; }
+		public override string ToString()
+		{
+			var stringBuilder =
+				new System.Text.StringBuilder();
+
+			stringBuilder.Append($"{ nameof(FullName) }:{ FullName }");
+			stringBuilder.Append("|");
+			stringBuilder.Append($"{ nameof(Age) }:{ Age }");
+
+			var result =
+				stringBuilder.ToString();
+
+			return result;
+		}
 	}
 }
