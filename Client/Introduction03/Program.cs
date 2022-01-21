@@ -73,8 +73,8 @@
 			//list6.Add(10);
 			//list6.Add(20);
 
-			// بی‌دقتی می‌کنیم - خطر مدل این کدنویسی، آن است
-			// که خطا در زمان اجرا ایجاد می‌شود و نه در زمان کامپایل
+			//// بی‌دقتی می‌کنیم - خطر مدل این کدنویسی، آن است
+			//// که خطا در زمان اجرا ایجاد می‌شود و نه در زمان کامپایل
 			//list6.Add("Hello, World!");
 
 			//list6.Add(40);
@@ -92,7 +92,7 @@
 			// **************************************************
 			// **************************************************
 			//var list7 =
-			//	new System.Collections.Generic.List<int>();
+			//	new System.Collections.Generic.List<float>();
 
 			//list7.Add(10);
 			//list7.Add(20);
@@ -132,7 +132,10 @@
 			//var list9 =
 			//	new System.Collections.Generic.List<Person>();
 
-			//list9.Add(new Person { FullName = "Full Name (1)", Age = 21});
+			////list9.Add(10);
+			////list9.Add("Hello, World!");
+
+			//list9.Add(new Person { FullName = "Full Name (1)", Age = 21 });
 			//list9.Add(new Person { FullName = "Full Name (2)", Age = 22 });
 			//list9.Add(new Person { FullName = "Full Name (3)", Age = 23 });
 			//list9.Add(new Person { FullName = "Full Name (4)", Age = 24 });
