@@ -17,10 +17,10 @@
 
 			// Result: "FullName:Dariush Tasdighi|Age:49"
 
-			string result1 = "FullName:" + person.FullName + "|Age:" + person.FullName;
+			string result1 = "FullName:" + person.FullName + "|Age:" + person.Age;
 
 			string result2 =
-				"FullName:" + person.FullName + "|Age:" + person.FullName;
+				"FullName:" + person.FullName + "|Age:" + person.Age;
 
 			string result3 =
 				string.Format("FullName:{0}|Age:{1}", person.FullName, person.Age);
@@ -44,24 +44,35 @@
 			string result8 =
 				$"{ nameof(person.FullName) }:{ person.FullName }|{ nameof(person.Age) }:{ person.Age }";
 
+			//string result9 =
+			//	$"{ nameof(person.FoolName) }:{ person.FullName }|{ nameof(person.Aig) }:{ person.Age }";
+
 			// Result: "FullName:Dariush Tasdighi|Age:49"
 
-			string result9 =
+			string result10 =
 				$"{ nameof(person.FullName) }:{ person.FullName }" +
 				"|" +
 				$"{ nameof(person.Age) }:{ person.Age }";
 
-			var result10 =
+			string result11;
+
+			result11 = "A"; // "A"
+			result11 += "B"; // "AB"
+			result11 += "C"; // "ABC"
+			result11 += "D"; // "ABCD"
+			result11 += "E"; // "ABCDE"
+
+			var result12 =
 				new System.Text.StringBuilder();
 
-			result10.Append($"{ nameof(person.FullName) }:{ person.FullName }");
-			result10.Append("|");
-			result10.Append($"{ nameof(person.Age) }:{ person.Age }");
+			result12.Append($"{ nameof(person.FullName) }:{ person.FullName }");
+			result12.Append("|");
+			result12.Append($"{ nameof(person.Age) }:{ person.Age }");
 
-			string result11 =
-				result10.ToString();
+			string result13 =
+				result12.ToString();
 
-			System.Console.WriteLine(result11);
+			System.Console.WriteLine(result13);
 		}
 	}
 }
