@@ -42,11 +42,17 @@
 			// **************************************************
 			int a = 10;
 			int b = 20;
-			int c = 30;
+			//int c = 30;
 
 			// "A=20,B=10,C=20"
+			//string result4 =
+			//	string.Format("A={1},B={0},C={1}", a, b, c);
+			// همانگونه که در مثال فوق ملاحظه می‌کنید
+			// اگر یک متغیر اضافه و به درد نخور هم بنویسیم
+			// سامانه صرفا اخطار می‌دهد و خطا نمی‌گیرد
+
 			string result4 =
-				string.Format("A={1},B={0},C={1}", a, b, c);
+				string.Format("A={1},B={0},C={1}", a, b);
 
 			System.Console.WriteLine(result4);
 			// **************************************************
@@ -109,7 +115,7 @@
 				new System.Text.StringBuilder();
 
 			stringBuilder.Append($"{ nameof(person.FullName) }:{ person.FullName }");
-			stringBuilder.Append("|");
+			stringBuilder.Append('|');
 			stringBuilder.Append($"{ nameof(person.Age) }:{ person.Age }");
 
 			string result12 =
