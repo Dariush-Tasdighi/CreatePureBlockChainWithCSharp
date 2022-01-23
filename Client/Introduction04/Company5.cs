@@ -13,8 +13,11 @@
 		public string Name { get; set; }
 
 		// **********
+		//private System.Collections.Generic.IList<Person> _employees; // Compile Error!
+
+		//private System.Collections.Generic.List<Person> _employees; // Note: It is better make it readonly!
+
 		private readonly System.Collections.Generic.List<Person> _employees;
-		//private readonly System.Collections.Generic.IList<Person> _employees;
 
 		/// <summary>
 		/// ندارد Lazy Loading متاسفانه این روش

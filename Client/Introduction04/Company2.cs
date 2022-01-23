@@ -18,8 +18,8 @@
 
 		public string Name { get; set; }
 
-		//public System.Collections.Generic.IList<Person> Employees { get; } =
-		//	new System.Collections.Generic.List<Person>();
+		//public System.Collections.Generic.IList<Person>
+		//	Employees { get; } = new System.Collections.Generic.List<Person>();
 
 		public System.Collections.Generic.IList<Person> Employees { get; }
 	}
