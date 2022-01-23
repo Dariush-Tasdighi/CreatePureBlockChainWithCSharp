@@ -44,6 +44,10 @@
 			int b = 20;
 			//int c = 30;
 
+			// Compile Warning! - Runtime Error!
+			//string result4 =
+			//	string.Format("A={1},B={0},C={1}", a);
+
 			// "A=20,B=10,C=20"
 			//string result4 =
 			//	string.Format("A={1},B={0},C={1}", a, b, c);

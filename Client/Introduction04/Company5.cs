@@ -24,7 +24,8 @@
 		{
 			get
 			{
-				return _employees;
+				//return _employees;
+				return _employees.AsReadOnly();
 			}
 		}
 		// **********
