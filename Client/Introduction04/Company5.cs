@@ -64,7 +64,7 @@
 			//	{
 			//		if (company.ManagementOffice.Ceo != null)
 			//		{
-			//			string fullName =
+			//			fullName =
 			//				company.ManagementOffice.Ceo.FullName;
 			//		}
 			//	}
@@ -78,7 +78,7 @@
 			//	(company.ManagementOffice != null) &&
 			//	(company.ManagementOffice.Ceo != null))
 			//{
-			//	string fullName =
+			//	fullName =
 			//		company.ManagementOffice.Ceo.FullName;
 			//}
 			// **************************************************

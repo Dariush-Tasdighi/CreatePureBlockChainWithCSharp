@@ -55,7 +55,7 @@
 			//	};
 
 			//var company01 =
-			//	new Company(name: "Sematec Ins.");
+			//	new Company(name: "Aien Co.");
 
 			//company01.Hire(person: person02);
 			//company01.Hire(person: person03);
