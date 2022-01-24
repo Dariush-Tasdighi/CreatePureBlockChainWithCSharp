@@ -10,6 +10,9 @@
 
 		public string? FullName { get; set; }
 
+		[System.Text.Json.Serialization.JsonIgnore]
+		public string? Description { get; set; }
+
 		public override string ToString()
 		{
 			string result =

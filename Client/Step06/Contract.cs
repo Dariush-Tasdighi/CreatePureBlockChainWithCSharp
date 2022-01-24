@@ -6,7 +6,7 @@
 		{
 			CurrentDifficulty = currentDifficulty;
 
-			Blocks =
+			_blocks =
 				new System.Collections.Generic.List<Block>();
 		}
 
@@ -14,7 +14,17 @@
 		public int CurrentDifficulty { get; set; }
 		// **********
 
-		public System.Collections.Generic.IList<Block> Blocks { get; }
+		// **********
+		private readonly System.Collections.Generic.List<Block> _blocks;
+
+		public System.Collections.Generic.IReadOnlyList<Block> Blocks
+		{
+			get
+			{
+				return _blocks.AsReadOnly();
+			}
+		}
+		// **********
 
 		public void AddTransactionAndMineBlock(Transaction transaction)
 		{
@@ -31,7 +41,7 @@
 				new Block(blockNumber: blockNumber,
 				transaction: transaction, parentHash: parentBlock?.MixHash);
 
-			Blocks.Add(newBlock);
+			_blocks.Add(newBlock);
 
 			newBlock.Mine();
 		}

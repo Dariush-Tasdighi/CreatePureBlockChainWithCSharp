@@ -22,11 +22,6 @@
 		/// </summary>
 		public string? FullName { get; set; }
 
-		//public override string ToString()
-		//{
-		//	return base.ToString();
-		//}
-
 		public override string ToString()
 		{
 			string result =

@@ -35,7 +35,7 @@
 		// **********
 
 		// **********
-		private System.Collections.Generic.List<Transaction> _transactions;
+		private readonly System.Collections.Generic.List<Transaction> _transactions;
 
 		public System.Collections.Generic.IReadOnlyList<Transaction> Transactions
 		{
@@ -103,21 +103,31 @@
 
 		public string CalculateMixHash()
 		{
-			string text =
-				$"{nameof(Nonce)}:{Nonce}" +
-				"|" +
-				$"{nameof(Timestamp)}:{Timestamp}" +
-				"|" +
-				$"{nameof(Difficulty)}:{Difficulty}" +
-				"|" +
-				$"{nameof(ParentHash)}:{ParentHash}" +
-				"|" +
-				$"{nameof(BlockNumber)}:{BlockNumber}" +
-				"|" +
-				$"{nameof(BaseFeePerGas)}:{BaseFeePerGas}" +
-				"|" +
-				$"{nameof(Transactions)}:{Infrastructure.Utility.ConvertObjectToJson(Transactions)}"
-				;
+			var transactionsString =
+				Infrastructure.Utility.ConvertObjectToJson(Transactions);
+
+			var stringBuilder =
+				new System.Text.StringBuilder();
+
+			stringBuilder.Append($"{nameof(Nonce)}:{Nonce}");
+			stringBuilder.Append('|');
+			stringBuilder.Append($"{nameof(Timestamp)}:{Timestamp}");
+			stringBuilder.Append('|');
+			stringBuilder.Append($"{nameof(Difficulty)}:{Difficulty}");
+			stringBuilder.Append('|');
+			stringBuilder.Append($"{nameof(ParentHash)}:{ParentHash}");
+			stringBuilder.Append('|');
+			stringBuilder.Append($"{nameof(BlockNumber)}:{BlockNumber}");
+			stringBuilder.Append('|');
+			stringBuilder.Append($"{nameof(Transactions)}:{transactionsString}");
+
+			// **********
+			stringBuilder.Append('|');
+			stringBuilder.Append($"{nameof(BaseFeePerGas)}:{BaseFeePerGas}");
+			// **********
+
+			var text =
+				stringBuilder.ToString();
 
 			string result =
 				Infrastructure.Utility.GetSha256(text: text);

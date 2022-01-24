@@ -24,25 +24,25 @@
 		// **********
 
 		// **********
-		public System.Collections.Generic.List<Block> _blocks;
+		public readonly System.Collections.Generic.List<Block> _blocks;
 
 		public System.Collections.Generic.IReadOnlyList<Block> Blocks
 		{
 			get
 			{
-				return _blocks;
+				return _blocks.AsReadOnly();
 			}
 		}
 		// **********
 
 		// **********
-		private System.Collections.Generic.List<Transaction> _pendingTransactions;
+		private readonly System.Collections.Generic.List<Transaction> _pendingTransactions;
 
 		public System.Collections.Generic.IReadOnlyList<Transaction> PendingTransactions
 		{
 			get
 			{
-				return _pendingTransactions;
+				return _pendingTransactions.AsReadOnly();
 			}
 		}
 		// **********

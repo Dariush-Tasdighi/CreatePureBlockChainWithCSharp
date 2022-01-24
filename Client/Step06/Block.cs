@@ -67,21 +67,26 @@
 
 		public string CalculateMixHash()
 		{
-			string text =
-				$"{nameof(BlockNumber)}:{BlockNumber}" +
-				"|" +
-				$"{nameof(Timestamp)}:{Timestamp}" +
-				"|" +
-				$"{nameof(ParentHash)}:{ParentHash}" +
-				"|" +
-				$"{nameof(Transaction)}:{Transaction}" +
-				// **********
-				"|" +
-				$"{nameof(Nonce)}:{Nonce}" +
-				"|" +
-				$"{nameof(Difficulty)}:{Difficulty}"
-				// **********
-				;
+			var stringBuilder =
+				new System.Text.StringBuilder();
+
+			// **********
+			stringBuilder.Append($"{nameof(Nonce)}:{Nonce}");
+			stringBuilder.Append('|');
+			stringBuilder.Append($"{nameof(Difficulty)}:{Difficulty}");
+			stringBuilder.Append('|');
+			// **********
+
+			stringBuilder.Append($"{nameof(Timestamp)}:{Timestamp}");
+			stringBuilder.Append('|');
+			stringBuilder.Append($"{nameof(ParentHash)}:{ParentHash}");
+			stringBuilder.Append('|');
+			stringBuilder.Append($"{nameof(BlockNumber)}:{BlockNumber}");
+			stringBuilder.Append('|');
+			stringBuilder.Append($"{nameof(Transaction)}:{Transaction}");
+
+			var text =
+				stringBuilder.ToString();
 
 			string result =
 				Infrastructure.Utility.GetSha256(text: text);

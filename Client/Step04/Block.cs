@@ -47,41 +47,19 @@
 
 		public string CalculateMixHash()
 		{
-			// **************************************************
-			//string temp =
-			//	"BlockNumber:" + BlockNumber; // "BlockNumber:1"
+			var stringBuilder =
+				new System.Text.StringBuilder();
 
-			//string temp =
-			//	string.Format("BlockNumber:{0}", BlockNumber);
+			stringBuilder.Append($"{nameof(Timestamp)}:{Timestamp}");
+			stringBuilder.Append('|');
+			stringBuilder.Append($"{nameof(ParentHash)}:{ParentHash}");
+			stringBuilder.Append('|');
+			stringBuilder.Append($"{nameof(BlockNumber)}:{BlockNumber}");
+			stringBuilder.Append('|');
+			stringBuilder.Append($"{nameof(Transaction)}:{Transaction}");
 
-			//string temp =
-			//	$"BlockNumber:{BlockNumber}";
-
-			// اگر در نوشتن نام متغیر در رشته سوتی بدهیم، کامپایلر هیچ خطایی نمی‌دهد
-			//string temp =
-			//	$"BlackNamber:{BlockNumber}"; // "BlackNamber:1"
-
-			//string temp =
-			//	$"{nameof(BlockNumber)}:{BlockNumber}";
-
-			//string temp =
-			//	$"{nameof(BlackNamber)}:{BlockNumber}";
-			// **************************************************
-
-			// روش ایجاد یک رشته به شکل ذیل، کاملا غیرحرفه‌ای و احمقانه است
-			// فقط برای خواناتر شدن سورس‌کد، در هنگام تدریس، به شکل ذیل نوشته شده است
-			string text =
-				$"{nameof(BlockNumber)}:{BlockNumber}" +
-				"|" +
-				$"{nameof(Timestamp)}:{Timestamp}" +
-				"|" +
-				$"{nameof(ParentHash)}:{ParentHash}" +
-				"|" +
-				$"{nameof(Transaction)}:{Transaction}"
-				;
-
-			//string text =
-			//	$"{nameof(BlockNumber)}:{BlockNumber}|{nameof(Timestamp)}:{Timestamp}|{nameof(ParentHash)}:{ParentHash}|{nameof(Transaction)}:{Transaction}";
+			var text =
+				stringBuilder.ToString();
 
 			string result =
 				Infrastructure.Utility.GetSha256(text: text);
