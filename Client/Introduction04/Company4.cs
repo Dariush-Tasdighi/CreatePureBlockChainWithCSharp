@@ -29,12 +29,18 @@
 
 		public void Hire(Person person)
 		{
+			//if (person == null)
+			//{
+			//	return;
+			//}
+
 			if (person.Age < 20)
 			{
 				return;
 			}
 
 			Employees.Add(person);
+			//_employees.Add(person);
 		}
 	}
 }
