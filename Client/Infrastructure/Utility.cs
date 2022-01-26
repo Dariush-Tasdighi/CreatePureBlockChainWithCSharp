@@ -10,6 +10,9 @@
 		{
 			get
 			{
+				//var result =
+				//	System.DateTime.Now;
+
 				var result =
 					System.DateTime.UtcNow;
 
@@ -27,7 +30,8 @@
 				};
 
 			var result =
-				System.Text.Json.JsonSerializer.Serialize(value: theObject, options: options);
+				System.Text.Json.JsonSerializer
+				.Serialize(value: theObject, options: options);
 
 			return result;
 		}

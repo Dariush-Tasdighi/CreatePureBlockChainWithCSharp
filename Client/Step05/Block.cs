@@ -54,7 +54,8 @@
 		public override string ToString()
 		{
 			string result =
-				Infrastructure.Utility.ConvertObjectToJson(theObject: this);
+				Infrastructure.Utility
+				.ConvertObjectToJson(theObject: this);
 
 			return result;
 		}

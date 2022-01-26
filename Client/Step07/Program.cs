@@ -73,7 +73,8 @@
 				contract.GetAccountBalance
 				(accountAddress: dariushTasdighiAccount.Address);
 
-			System.Console.WriteLine($"{dariushTasdighiAccount.FullName} Balance: {dariushTasdighiBalance}");
+			System.Console.WriteLine
+				($"{dariushTasdighiAccount.FullName} Balance: {dariushTasdighiBalance}");
 			// **************************************************
 
 			// **************************************************
@@ -87,7 +88,8 @@
 			//	contract.GetAccountBalance
 			//	(accountAddress: dariushTasdighiAccount.Address);
 
-			//System.Console.WriteLine($"{dariushTasdighiAccount.FullName} Balance: {dariushTasdighiBalance}");
+			//System.Console.WriteLine
+			//	($"{dariushTasdighiAccount.FullName} Balance: {dariushTasdighiBalance}");
 			// **************************************************
 
 			// **************************************************
@@ -109,7 +111,8 @@
 			//	contract.GetAccountBalance
 			//	(accountAddress: dariushTasdighiAccount.Address);
 
-			//System.Console.WriteLine($"{dariushTasdighiAccount.FullName} Balance: {dariushTasdighiBalance}");
+			//System.Console.WriteLine
+			//	($"{dariushTasdighiAccount.FullName} Balance: {dariushTasdighiBalance}");
 			// **************************************************
 
 			// **************************************************
@@ -133,7 +136,8 @@
 			//	contract.GetAccountBalance
 			//	(accountAddress: dariushTasdighiAccount.Address);
 
-			//System.Console.WriteLine($"{dariushTasdighiAccount.FullName} Balance: {dariushTasdighiBalance}");
+			//System.Console.WriteLine
+			//	($"{dariushTasdighiAccount.FullName} Balance: {dariushTasdighiBalance}");
 			// **************************************************
 		}
 	}

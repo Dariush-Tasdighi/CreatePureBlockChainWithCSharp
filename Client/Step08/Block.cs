@@ -104,7 +104,8 @@
 		public string CalculateMixHash()
 		{
 			var transactionsString =
-				Infrastructure.Utility.ConvertObjectToJson(Transactions);
+				Infrastructure.Utility
+				.ConvertObjectToJson(Transactions);
 
 			var stringBuilder =
 				new System.Text.StringBuilder();
@@ -148,7 +149,8 @@
 		public override string ToString()
 		{
 			string result =
-				Infrastructure.Utility.ConvertObjectToJson(theObject: this);
+				Infrastructure.Utility
+				.ConvertObjectToJson(theObject: this);
 
 			return result;
 		}

@@ -81,7 +81,8 @@
 			}
 			// **************************************************
 
-			System.Console.WriteLine($"{dariushTasdighiAccount.FullName} Balance: {dariushTasdighiBalance}");
+			System.Console.WriteLine
+				($"{dariushTasdighiAccount.FullName} Balance: {dariushTasdighiBalance}");
 
 			// حال با استفاده از معماری بلاک‌جین، می‌خواهیم عملیات را برای هکر سخت نماییم
 			// برای این منظور و قبل از ورود به مرحله بعد، به عکسی که در فایل ورد قرار

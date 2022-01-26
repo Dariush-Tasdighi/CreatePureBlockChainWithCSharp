@@ -13,7 +13,6 @@
 		public string Name { get; set; }
 
 		// **********
-		[System.Text.Json.Serialization.JsonPropertyName(nameof(Employees))]
 		private readonly System.Collections.Generic.List<Person> _employees;
 
 		public System.Collections.Generic.IReadOnlyList<Person> Employees
@@ -38,7 +37,8 @@
 		public override string ToString()
 		{
 			string result =
-				Infrastructure.Utility.ConvertObjectToJson(theObject: this);
+				Infrastructure.Utility
+				.ConvertObjectToJson(theObject: this);
 
 			return result;
 		}

@@ -66,7 +66,8 @@
 				contract.GetAccountBalance
 				(accountAddress: dariushTasdighiAccount.Address);
 
-			System.Console.WriteLine($"{dariushTasdighiAccount.FullName} Balance: {dariushTasdighiBalance}");
+			System.Console.WriteLine
+				($"{dariushTasdighiAccount.FullName} Balance: {dariushTasdighiBalance}");
 			// **************************************************
 
 			// حال اگر داریوش تصدیقی، به عنوان یک هکر و مانند کاری که در مرحله سه انجام دادیم
@@ -84,7 +85,8 @@
 				contract.GetAccountBalance
 				(accountAddress: dariushTasdighiAccount.Address);
 
-			System.Console.WriteLine($"{dariushTasdighiAccount.FullName} Balance: {dariushTasdighiBalance}");
+			System.Console.WriteLine
+				($"{dariushTasdighiAccount.FullName} Balance: {dariushTasdighiBalance}");
 			// **************************************************
 		}
 	}
