@@ -14,12 +14,10 @@
 
 		/// <summary>
 		/// Id
+		/// باشد Guid در پروژه‌های واقعی بهتر است که
 		/// </summary>
 		public string Address { get; }
 
-		/// <summary>
-		/// <Nullable>enable</Nullable>
-		/// </summary>
 		public string? FullName { get; set; }
 
 		public override string ToString()
