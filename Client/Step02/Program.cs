@@ -76,7 +76,8 @@
 			}
 			// **************************************************
 
-			System.Console.WriteLine($"{dariushTasdighiAccount.FullName} Balance: {dariushTasdighiBalance}");
+			System.Console.WriteLine
+				($"{dariushTasdighiAccount.FullName} Balance: {dariushTasdighiBalance}");
 
 			// ایرادی که این طراحی دارد آن است که یک هکر به راحتی و در یک زمان بسیار کوتاه، می‌تواند
 			// اطلاعات یک تراکنش را در بانک اطلاعاتی تغییر دهد و مانده حساب کیف پول خود را افزایش دهد
