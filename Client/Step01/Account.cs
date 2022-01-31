@@ -10,13 +10,13 @@
 			Address = address;
 		}
 
-		public int Balance { get; set; }
-
 		/// <summary>
 		/// Id
 		/// باشد Guid در پروژه‌های واقعی بهتر است که
 		/// </summary>
 		public string Address { get; }
+
+		public int Balance { get; set; }
 
 		public string? FullName { get; set; }
 
