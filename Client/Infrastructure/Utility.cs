@@ -47,11 +47,11 @@
 			var outputBytes =
 				sha.ComputeHash(buffer: inputBytes);
 
-			var result =
-				System.Convert.ToBase64String(inArray: outputBytes);
-
 			sha.Dispose();
 			//sha = null;
+
+			var result =
+				System.Convert.ToBase64String(inArray: outputBytes);
 
 			return result;
 		}

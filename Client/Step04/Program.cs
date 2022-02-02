@@ -38,7 +38,7 @@
 				new Transaction(id: 1, amount: 10,
 				recipientAccountAddress: dariushTasdighiAccount.Address);
 
-			contract.AddTransactionAndMineBlock(transaction1);
+			contract.AddTransactionAndMineBlock(transaction: transaction1);
 			// **************************************************
 
 			// **************************************************
@@ -47,7 +47,7 @@
 				senderAccountAddress: aliRezaAlaviAccount.Address,
 				recipientAccountAddress: dariushTasdighiAccount.Address);
 
-			contract.AddTransactionAndMineBlock(transaction2);
+			contract.AddTransactionAndMineBlock(transaction: transaction2);
 			// **************************************************
 
 			// **************************************************
@@ -56,10 +56,10 @@
 				senderAccountAddress: dariushTasdighiAccount.Address,
 				recipientAccountAddress: saraAhmadiAccount.Address);
 
-			contract.AddTransactionAndMineBlock(transaction3);
+			contract.AddTransactionAndMineBlock(transaction: transaction3);
 			// **************************************************
 
-			System.Console.WriteLine(contract.ToString());
+			System.Console.WriteLine(contract);
 
 			// **************************************************
 			int dariushTasdighiBalance =
@@ -78,7 +78,7 @@
 			// قبل از آن ابتدا اعتبارسنجی کنیم
 
 			// **************************************************
-			// کاری که هکر انجام می‌دهد
+			// کاری که هکر در بانک اطلاعاتی انجام می‌دهد
 			contract.Blocks[1].Transaction.Amount = 100;
 
 			dariushTasdighiBalance =

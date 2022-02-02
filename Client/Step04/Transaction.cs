@@ -10,12 +10,16 @@
 			Amount = amount;
 			SenderAccountAddress = senderAccountAddress;
 			RecipientAccountAddress = recipientAccountAddress;
+
+			Timestamp = Infrastructure.Utility.Now;
 		}
 
 		public int Id { get; }
 
 		//public int Amount { get; }
 		public int Amount { get; set; }
+
+		public System.DateTime Timestamp { get; }
 
 		public string? SenderAccountAddress { get; }
 

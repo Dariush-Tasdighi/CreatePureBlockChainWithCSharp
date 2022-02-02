@@ -1,4 +1,6 @@
-﻿namespace Client.Step07
+﻿using System.Linq;
+
+namespace Client.Step07
 {
 	public class Contract : object
 	{

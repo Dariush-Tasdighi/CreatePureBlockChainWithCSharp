@@ -1,4 +1,6 @@
-﻿namespace Client.Step08
+﻿using System.Linq;
+
+namespace Client.Step08
 {
 	public class Block : object
 	{

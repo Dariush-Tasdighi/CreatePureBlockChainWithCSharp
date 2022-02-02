@@ -38,11 +38,14 @@
 
 		public void Mine()
 		{
-			Timestamp =
-				System.DateTime.Now;
+			if (string.IsNullOrWhiteSpace(MixHash))
+			{
+				Timestamp =
+					Infrastructure.Utility.Now;
 
-			MixHash =
-				CalculateMixHash();
+				MixHash =
+					CalculateMixHash();
+			}
 		}
 
 		public string CalculateMixHash()
