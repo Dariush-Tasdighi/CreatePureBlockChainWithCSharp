@@ -6,12 +6,13 @@
 			int amount, string recipientAccountAddress,
 			string? senderAccountAddress = null) : base()
 		{
+			Timestamp =
+				Infrastructure.Utility.Now;
+
 			Id = id;
 			Amount = amount;
 			SenderAccountAddress = senderAccountAddress;
 			RecipientAccountAddress = recipientAccountAddress;
-
-			Timestamp = Infrastructure.Utility.Now;
 		}
 
 		public int Id { get; }

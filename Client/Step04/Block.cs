@@ -32,7 +32,7 @@
 
 		/// <summary>
 		/// MineTime
-		/// Note: Mine Time NOT Create Time!
+		/// Note: It is Mining Time, NOT Creation Time!
 		/// </summary>
 		public System.DateTime? Timestamp { get; protected set; }
 
