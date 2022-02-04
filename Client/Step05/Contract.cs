@@ -35,9 +35,9 @@
 				new Block(blockNumber: blockNumber,
 				transaction: transaction, parentHash: parentBlock?.MixHash);
 
-			_blocks.Add(newBlock);
-
 			newBlock.Mine();
+
+			_blocks.Add(newBlock);
 		}
 
 		public int GetAccountBalance(string accountAddress)

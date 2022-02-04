@@ -22,11 +22,14 @@
 
 		public void Mine()
 		{
-			Timestamp =
-				System.DateTime.Now;
+			if (string.IsNullOrWhiteSpace(MixHash))
+			{
+				Timestamp =
+					System.DateTime.Now;
 
-			MixHash =
-				CalculateMixHash();
+				MixHash =
+					CalculateMixHash();
+			}
 		}
 
 		public string CalculateMixHash()

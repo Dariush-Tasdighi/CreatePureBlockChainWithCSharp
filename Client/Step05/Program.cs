@@ -35,7 +35,7 @@
 
 			// **************************************************
 			var transaction1 =
-				new Transaction(id: 1, amount: 10,
+				new Transaction(amount: 10,
 				recipientAccountAddress: dariushTasdighiAccount.Address);
 
 			contract.AddTransactionAndMineBlock(transaction1);
@@ -43,7 +43,7 @@
 
 			// **************************************************
 			var transaction2 =
-				new Transaction(id: 2, amount: 20,
+				new Transaction(amount: 20,
 				recipientAccountAddress: dariushTasdighiAccount.Address,
 				senderAccountAddress: aliRezaAlaviAccount.Address);
 
@@ -52,7 +52,7 @@
 
 			// **************************************************
 			var transaction3 =
-				new Transaction(id: 3, amount: 5,
+				new Transaction(amount: 5,
 				recipientAccountAddress: saraAhmadiAccount.Address,
 				senderAccountAddress: dariushTasdighiAccount.Address);
 
@@ -71,9 +71,10 @@
 			// **************************************************
 
 			// **************************************************
-			// کاری که هکر انجام می‌دهد
+			// کاری که هکر در بانک اطلاعاتی انجام می‌دهد
 			// **************************************************
 			transaction2.Amount = 100;
+			// **************************************************
 
 			// **************************************************
 			dariushTasdighiBalance =
