@@ -35,13 +35,13 @@
 				new Contract();
 
 			//var contract =
-			//	new Contract(currentDifficulty: 1);
+			//	new Contract(initialDifficulty: 1);
 
 			//var contract =
-			//	new Contract(currentDifficulty: 2);
+			//	new Contract(initialDifficulty: 2);
 
 			//var contract =
-			//	new Contract(currentDifficulty: 3);
+			//	new Contract(initialDifficulty: 3);
 			// **************************************************
 
 			// **************************************************

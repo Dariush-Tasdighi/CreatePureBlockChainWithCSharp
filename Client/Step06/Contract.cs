@@ -2,9 +2,9 @@
 {
 	public class Contract : object
 	{
-		public Contract(int currentDifficulty = 0) : base()
+		public Contract(int initialDifficulty = 0) : base()
 		{
-			CurrentDifficulty = currentDifficulty;
+			CurrentDifficulty = initialDifficulty;
 
 			_blocks =
 				new System.Collections.Generic.List<Block>();
