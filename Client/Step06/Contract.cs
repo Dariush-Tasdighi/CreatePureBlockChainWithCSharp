@@ -37,13 +37,39 @@
 					Blocks[blockNumber - 1];
 			}
 
+			// **********
 			var newBlock =
-				new Block(blockNumber: blockNumber,
-				transaction: transaction, parentHash: parentBlock?.MixHash);
-
-			_blocks.Add(newBlock);
+				new Block(blockNumber: blockNumber, transaction: transaction,
+				difficulty: CurrentDifficulty, parentHash: parentBlock?.MixHash);
+			// **********
 
 			newBlock.Mine();
+
+			_blocks.Add(newBlock);
+		}
+
+		public bool IsValid()
+		{
+			for (int index = 1; index <= Blocks.Count - 1; index++)
+			{
+				var currentBlock = Blocks[index];
+				var parentBlock = Blocks[index - 1];
+
+				var currentMixHash =
+					currentBlock.CalculateMixHash();
+
+				if (currentBlock.MixHash != currentMixHash)
+				{
+					return false;
+				}
+
+				if (currentBlock.ParentHash != parentBlock.MixHash)
+				{
+					return false;
+				}
+			}
+
+			return true;
 		}
 
 		public int GetAccountBalance(string accountAddress)
@@ -71,30 +97,6 @@
 			}
 
 			return balance;
-		}
-
-		public bool IsValid()
-		{
-			for (int index = 1; index <= Blocks.Count - 1; index++)
-			{
-				var currentBlock = Blocks[index];
-				var parentBlock = Blocks[index - 1];
-
-				var currentMixHash =
-					currentBlock.CalculateMixHash();
-
-				if (currentBlock.MixHash != currentMixHash)
-				{
-					return false;
-				}
-
-				if (currentBlock.ParentHash != parentBlock.MixHash)
-				{
-					return false;
-				}
-			}
-
-			return true;
 		}
 
 		public override string ToString()

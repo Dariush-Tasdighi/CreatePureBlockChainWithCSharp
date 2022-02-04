@@ -5,7 +5,7 @@
 		<TargetFramework>net6.0</TargetFramework>
 		<!--<ImplicitUsings>enable</ImplicitUsings>-->
 		<Nullable>enable</Nullable>
-		<StartupObject>Client.Step05.Program</StartupObject>
+		<StartupObject>Client.Step06.Program</StartupObject>
 	</PropertyGroup>
 
 	<ItemGroup>

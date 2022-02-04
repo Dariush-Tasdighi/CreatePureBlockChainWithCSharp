@@ -6,7 +6,8 @@
 			string recipientAccountAddress,
 			string? senderAccountAddress = null) : base()
 		{
-			Id = System.Guid.NewGuid();
+			Id =
+				System.Guid.NewGuid();
 
 			Timestamp =
 				Infrastructure.Utility.Now;

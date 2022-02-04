@@ -43,13 +43,13 @@
 		public void Mine()
 		{
 			Timestamp =
-				System.DateTime.Now;
+				Infrastructure.Utility.Now;
 
 			var leadingZeros =
 				"".PadLeft(totalWidth: Difficulty, paddingChar: '0');
 
 			var startTime =
-				System.DateTime.Now;
+				Infrastructure.Utility.Now;
 
 			Nonce = -1;
 			string mixHash;
@@ -65,7 +65,7 @@
 			MixHash = mixHash;
 
 			var finishTime =
-				System.DateTime.Now;
+				Infrastructure.Utility.Now;
 
 			Duration =
 				finishTime - startTime;

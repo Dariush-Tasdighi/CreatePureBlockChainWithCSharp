@@ -30,7 +30,7 @@
 				};
 			// **************************************************
 
-			// **********
+			// **************************************************
 			var contract =
 				new Contract();
 
@@ -42,11 +42,11 @@
 
 			//var contract =
 			//	new Contract(currentDifficulty: 3);
-			// **********
+			// **************************************************
 
 			// **************************************************
 			var transaction1 =
-				new Transaction(id: 1, amount: 10,
+				new Transaction(amount: 10,
 				recipientAccountAddress: dariushTasdighiAccount.Address);
 
 			contract.AddTransactionAndMineBlock(transaction1);
@@ -54,28 +54,29 @@
 
 			// **************************************************
 			var transaction2 =
-				new Transaction(id: 2, amount: 20,
+				new Transaction(amount: 20,
 				recipientAccountAddress: dariushTasdighiAccount.Address,
 				senderAccountAddress: aliRezaAlaviAccount.Address);
 
 			contract.AddTransactionAndMineBlock(transaction2);
 			// **************************************************
 
-			// **********
+			// **************************************************
 			// !روی دستگاه من، تقریبا دو دقیقه طول می‌کشد
+			// **************************************************
 			//contract.CurrentDifficulty = 3;
-			// **********
+			// **************************************************
 
 			// **************************************************
 			var transaction3 =
-				new Transaction(id: 3, amount: 5,
+				new Transaction(amount: 5,
 				recipientAccountAddress: saraAhmadiAccount.Address,
 				senderAccountAddress: dariushTasdighiAccount.Address);
 
 			contract.AddTransactionAndMineBlock(transaction3);
 			// **************************************************
 
-			System.Console.WriteLine(contract.ToString());
+			System.Console.WriteLine(contract);
 
 			// **************************************************
 			int dariushTasdighiBalance =
@@ -86,6 +87,7 @@
 				($"{dariushTasdighiAccount.FullName} Balance: {dariushTasdighiBalance}");
 			// **************************************************
 
+			// **************************************************
 			// از آن‌جایی که هزینه و زمان استخراج قابل توجه می‌باشد، شاید صرفی نداشته باشد
 			// تا در هر بلاک صرفا یک تراکنش قرار دهیم و شاید بهتر باشد که در داخل هر بلاک
 			// تعدادی تراکنش قرار دهیم
@@ -95,6 +97,7 @@
 
 			// حال می‌خواهیم تراکنش موجود در بلاک خود را به فهرستی از تراکنش‌ها تبدیل کرده
 			// و مثلا بعد از درج شدن چند تراکنش، نسبت به استخراج آن اقدام نماییم
+			// **************************************************
 		}
 	}
 }

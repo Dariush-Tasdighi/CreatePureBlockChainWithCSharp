@@ -81,7 +81,7 @@ namespace Client.Step08
 				"".PadLeft(totalWidth: Difficulty, paddingChar: '0');
 
 			var startTime =
-				System.DateTime.Now;
+				Infrastructure.Utility.Now;
 
 			Nonce = -1;
 			string mixHash;
