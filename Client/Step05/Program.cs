@@ -59,7 +59,7 @@
 			contract.AddTransactionAndMineBlock(transaction3);
 			// **************************************************
 
-			System.Console.WriteLine(contract.ToString());
+			System.Console.WriteLine(contract);
 
 			// **************************************************
 			int dariushTasdighiBalance =

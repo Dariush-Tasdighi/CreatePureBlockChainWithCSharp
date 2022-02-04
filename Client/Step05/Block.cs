@@ -25,7 +25,7 @@
 			if (string.IsNullOrWhiteSpace(MixHash))
 			{
 				Timestamp =
-					System.DateTime.Now;
+					Infrastructure.Utility.Now;
 
 				MixHash =
 					CalculateMixHash();
