@@ -16,7 +16,7 @@ namespace Client.Step08
 			_pendingTransactions =
 				new System.Collections.Generic.List<Transaction>();
 
-			CreateGenesisBlock();
+			//CreateGenesisBlock();
 		}
 
 		// **********
@@ -49,13 +49,13 @@ namespace Client.Step08
 		}
 		// **********
 
-		private Block CreateGenesisBlock()
-		{
-			var genesisBlock =
-				CreateEmptyBlock();
+		//private Block CreateGenesisBlock()
+		//{
+		//	var genesisBlock =
+		//		CreateEmptyBlock();
 
-			return genesisBlock;
-		}
+		//	return genesisBlock;
+		//}
 
 		private Block CreateEmptyBlock()
 		{
@@ -100,13 +100,20 @@ namespace Client.Step08
 
 		public Block? Mine(string minerAccountAddress)
 		{
-			var block =
-				Blocks[Blocks.Count - 1];
-
-			if (block.IsMined())
+			if (_pendingTransactions == null)
 			{
 				return null;
 			}
+
+			//if (block.IsMined())
+			//{
+			//	return null;
+			//}
+
+			CreateEmptyBlock();
+
+			var block =
+				Blocks[Blocks.Count - 1];
 
 			for (int index = _pendingTransactions.Count - 1; index >= 0; index--)
 			{
@@ -123,8 +130,6 @@ namespace Client.Step08
 			}
 
 			block.Mine();
-
-			CreateEmptyBlock();
 
 			// **********
 			var gift =
@@ -147,15 +152,9 @@ namespace Client.Step08
 				return 0;
 			}
 
-			var blocks =
-				Blocks
-				.Where(current => current.IsMined())
-				.ToList()
-				;
-
 			decimal balance = 0;
 
-			foreach (var block in blocks)
+			foreach (var block in _blocks)
 			{
 				foreach (var transaction in block.Transactions)
 				{
@@ -191,16 +190,10 @@ namespace Client.Step08
 
 		public bool IsValid()
 		{
-			var blocks =
-				Blocks
-				.Where(current => current.IsMined())
-				.ToList()
-				;
-
-			for (int index = 1; index <= blocks.Count - 1; index++)
+			for (int index = 1; index <= _blocks.Count - 1; index++)
 			{
-				var currentBlock = blocks[index];
-				var parentBlock = blocks[index - 1];
+				var currentBlock = _blocks[index];
+				var parentBlock = _blocks[index - 1];
 
 				var currentMixHash =
 					currentBlock.CalculateMixHash();

@@ -47,7 +47,7 @@
 			// **************************************************
 			transaction =
 				new Transaction(amount: 20,
-				type: TransactionType.Charging,
+				type: TransactionType.Transferring,
 				recipientAccountAddress: dariushTasdighiAccount.Address,
 				senderAccountAddress: aliRezaAlaviAccount.Address);
 
@@ -57,7 +57,7 @@
 			// **************************************************
 			transaction =
 				new Transaction(amount: 5,
-				type: TransactionType.Charging,
+				type: TransactionType.Transferring,
 				recipientAccountAddress: saraAhmadiAccount.Address,
 				senderAccountAddress: dariushTasdighiAccount.Address);
 
@@ -67,7 +67,7 @@
 			// **************************************************
 			// Step (1)
 			// **************************************************
-			System.Console.WriteLine(contract.ToString());
+			System.Console.WriteLine(contract);
 
 			int dariushTasdighiBalance =
 				contract.GetAccountBalance
@@ -82,7 +82,7 @@
 			// **************************************************
 			//contract.Mine();
 
-			//System.Console.WriteLine(contract.ToString());
+			//System.Console.WriteLine(contract);
 
 			//int dariushTasdighiBalance =
 			//	contract.GetAccountBalance
@@ -99,13 +99,13 @@
 
 			//transaction =
 			//	new Transaction(amount: 15,
-			//	type: TransactionType.Charging,
+			//	type: TransactionType.Transferring,
 			//	recipientAccountAddress: dariushTasdighiAccount.Address,
 			//	senderAccountAddress: aliRezaAlaviAccount.Address);
 
 			//contract.AddTransaction(transaction);
 
-			//System.Console.WriteLine(contract.ToString());
+			//System.Console.WriteLine(contract);
 
 			//int dariushTasdighiBalance =
 			//	contract.GetAccountBalance
@@ -122,15 +122,21 @@
 
 			//transaction =
 			//	new Transaction(amount: 15,
-			//	type: TransactionType.Charging,
+			//	type: TransactionType.Transferring,
 			//	recipientAccountAddress: dariushTasdighiAccount.Address,
 			//	senderAccountAddress: aliRezaAlaviAccount.Address);
 
 			//contract.AddTransaction(transaction);
 
-			//contract.Mine();
+			//transaction =
+			//	new Transaction(amount: 5,
+			//	type: TransactionType.Transferring,
+			//	recipientAccountAddress: aliRezaAlaviAccount.Address,
+			//	senderAccountAddress: dariushTasdighiAccount.Address);
 
-			//System.Console.WriteLine(contract.ToString());
+			//contract.AddTransaction(transaction);
+
+			//System.Console.WriteLine(contract);
 
 			//int dariushTasdighiBalance =
 			//	contract.GetAccountBalance

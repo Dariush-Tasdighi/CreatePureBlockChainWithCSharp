@@ -60,17 +60,17 @@ namespace Client.Step08
 			return true;
 		}
 
-		public bool IsMined()
-		{
-			if (string.IsNullOrWhiteSpace(MixHash))
-			{
-				return false;
-			}
-			else
-			{
-				return true;
-			}
-		}
+		//public bool IsMined()
+		//{
+		//	if (string.IsNullOrWhiteSpace(MixHash))
+		//	{
+		//		return false;
+		//	}
+		//	else
+		//	{
+		//		return true;
+		//	}
+		//}
 
 		public void Mine()
 		{

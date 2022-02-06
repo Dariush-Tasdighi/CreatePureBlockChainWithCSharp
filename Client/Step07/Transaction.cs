@@ -6,7 +6,11 @@
 			int amount, string recipientAccountAddress,
 			string? senderAccountAddress = null) : base()
 		{
-			Id = System.Guid.NewGuid();
+			Id =
+				System.Guid.NewGuid();
+
+			Timestamp =
+				Infrastructure.Utility.Now;
 
 			Type = type;
 			Amount = amount;
@@ -14,13 +18,15 @@
 			RecipientAccountAddress = recipientAccountAddress;
 		}
 
-		// **********
-		public System.Guid Id { get; }
-		// **********
-
 		public int Amount { get; }
 
+		public System.Guid Id { get; }
+
+		// **********
 		public TransactionType Type { get; }
+		// **********
+
+		public System.DateTime Timestamp { get; }
 
 		public string? SenderAccountAddress { get; }
 

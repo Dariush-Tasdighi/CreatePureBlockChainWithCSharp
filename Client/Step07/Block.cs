@@ -9,8 +9,10 @@
 			ParentHash = parentHash;
 			BlockNumber = blockNumber;
 
-			Transactions =
+			// **********
+			_transactions =
 				new System.Collections.Generic.List<Transaction>();
+			// **********
 		}
 
 		public int BlockNumber { get; }
@@ -29,24 +31,58 @@
 
 		// **********
 		//public Transaction Transaction { get; }
-		public System.Collections.Generic.IList<Transaction> Transactions { get; }
+
+		private readonly System.Collections.Generic.List<Transaction> _transactions;
+
+		public System.Collections.Generic.IReadOnlyList<Transaction> Transactions
+		{
+			get
+			{
+				return _transactions;
+			}
+		}
+		// **********
+
+		// **********
+		public void AddTransaction(Transaction transaction)
+		{
+			_transactions.Add(transaction);
+		}
 		// **********
 
 		public bool IsMined()
 		{
-			var result =
-				!string.IsNullOrWhiteSpace(MixHash);
+			// **********
+			//return !string.IsNullOrWhiteSpace(MixHash);
+			// **********
 
-			return result;
+			if (string.IsNullOrWhiteSpace(MixHash))
+			{
+				return false;
+			}
+			else
+			{
+				return true;
+			}
 		}
 
 		public void Mine()
 		{
+			if (IsMined())
+			{
+				return;
+			}
+
 			Timestamp =
 				Infrastructure.Utility.Now;
 
+			// **********
+			//var leadingZeros =
+			//	"".PadLeft(totalWidth: Difficulty, paddingChar: '0');
+			// **********
+
 			var leadingZeros =
-				"".PadLeft(totalWidth: Difficulty, paddingChar: '0');
+				new string(c: '0', count: Difficulty);
 
 			var startTime =
 				Infrastructure.Utility.Now;

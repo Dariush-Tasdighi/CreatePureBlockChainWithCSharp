@@ -15,8 +15,6 @@ namespace Client.Step07
 			_pendingTransactions =
 				new System.Collections.Generic.List<Transaction>();
 			// **********
-
-			CreateGenesisBlock();
 		}
 
 		public int CurrentDifficulty { get; set; }
@@ -36,6 +34,9 @@ namespace Client.Step07
 		// **********
 		private System.Collections.Generic.List<Transaction> _pendingTransactions;
 
+		/// <summary>
+		/// Memory Pool = MemPool
+		/// </summary>
 		public System.Collections.Generic.IReadOnlyList<Transaction> PendingTransactions
 		{
 			get
@@ -45,15 +46,13 @@ namespace Client.Step07
 		}
 		// **********
 
-		private Block CreateGenesisBlock()
+		public void AddTransaction(Transaction transaction)
 		{
-			var genesisBlock =
-				CreateEmptyBlock();
-
-			return genesisBlock;
+			_pendingTransactions.Add(transaction);
 		}
 
-		private Block CreateEmptyBlock()
+		// **********
+		private Block GetNewBlock()
 		{
 			Block? parentBlock = null;
 			int blockNumber = Blocks.Count;
@@ -68,29 +67,19 @@ namespace Client.Step07
 				new Block(blockNumber: blockNumber,
 				difficulty: CurrentDifficulty, parentHash: parentBlock?.MixHash);
 
-			_blocks.Add(newBlock);
-
 			return newBlock;
 		}
+		// **********
 
-		public void AddTransaction(Transaction transaction)
-		{
-			_pendingTransactions.Add(transaction);
-		}
-
+		// **********
 		public Block? Mine()
 		{
 			var block =
-				Blocks[Blocks.Count - 1];
-
-			if (block.IsMined())
-			{
-				return null;
-			}
+				GetNewBlock();
 
 			foreach (var transaction in PendingTransactions)
 			{
-				block.Transactions.Add(transaction);
+				block.AddTransaction(transaction);
 			}
 
 			_pendingTransactions =
@@ -98,9 +87,34 @@ namespace Client.Step07
 
 			block.Mine();
 
-			CreateEmptyBlock();
+			_blocks.Add(block);
 
 			return block;
+		}
+		// **********
+
+		public bool IsValid()
+		{
+			for (int index = 1; index <= _blocks.Count - 1; index++)
+			{
+				var currentBlock = _blocks[index];
+				var parentBlock = _blocks[index - 1];
+
+				var currentMixHash =
+					currentBlock.CalculateMixHash();
+
+				if (currentBlock.MixHash != currentMixHash)
+				{
+					return false;
+				}
+
+				if (currentBlock.ParentHash != parentBlock.MixHash)
+				{
+					return false;
+				}
+			}
+
+			return true;
 		}
 
 		public int GetAccountBalance(string accountAddress)
@@ -110,15 +124,9 @@ namespace Client.Step07
 				return 0;
 			}
 
-			var blocks =
-				Blocks
-				.Where(current => current.IsMined())
-				.ToList()
-				;
-
 			int balance = 0;
 
-			foreach (var block in blocks)
+			foreach (var block in _blocks)
 			{
 				foreach (var transaction in block.Transactions)
 				{
@@ -136,37 +144,20 @@ namespace Client.Step07
 				}
 			}
 
-			return balance;
-		}
-
-		public bool IsValid()
-		{
-			var blocks =
-				Blocks
-				.Where(current => current.IsMined())
-				.ToList()
-				;
-
-			for (int index = 1; index <= blocks.Count - 1; index++)
+			// **********
+			// مهم
+			// **********
+			foreach (var transaction in _pendingTransactions)
 			{
-				var currentBlock = blocks[index];
-				var parentBlock = blocks[index - 1];
-
-				var currentMixHash =
-					currentBlock.CalculateMixHash();
-
-				if (currentBlock.MixHash != currentMixHash)
+				if (transaction.SenderAccountAddress == accountAddress)
 				{
-					return false;
-				}
-
-				if (currentBlock.ParentHash != parentBlock.MixHash)
-				{
-					return false;
+					balance -=
+						transaction.Amount;
 				}
 			}
+			// **********
 
-			return true;
+			return balance;
 		}
 
 		public override string ToString()
