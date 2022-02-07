@@ -2,8 +2,9 @@
 {
 	public class Transaction : object
 	{
-		public Transaction(TransactionType type,
-			int amount,
+		public Transaction
+			(int amount,
+			TransactionType type,
 			string? senderAccountAddress = null,
 			string? recipientAccountAddress = null) : base()
 		{

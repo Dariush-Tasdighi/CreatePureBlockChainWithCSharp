@@ -55,7 +55,7 @@ namespace Client.Step07
 				case TransactionType.Transferring:
 				{
 					int senderBalance =
-							GetAccountBalance(accountAddress: transaction.SenderAccountAddress!);
+						GetAccountBalance(accountAddress: transaction.SenderAccountAddress!);
 
 					if (senderBalance < transaction.Amount)
 					{

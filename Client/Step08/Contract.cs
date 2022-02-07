@@ -1,32 +1,33 @@
-﻿using System.Linq;
-
-namespace Client.Step08
+﻿namespace Client.Step08
 {
 	public class Contract : object
 	{
-		public Contract(int currentDifficulty = 0,
-			decimal currentBaseFeePerGas = 0) : base()
+		public Contract
+			(int initialDifficulty = 0,
+			double currentMiningReward = 0,
+			double currentMinimumTransactionFee = 0) : base()
 		{
-			CurrentDifficulty = currentDifficulty;
-			CurrentBaseFeePerGas = currentBaseFeePerGas;
-
 			_blocks =
 				new System.Collections.Generic.List<Block>();
 
 			_pendingTransactions =
 				new System.Collections.Generic.List<Transaction>();
 
-			//CreateGenesisBlock();
+			CurrentDifficulty = initialDifficulty;
+			CurrentMiningReward = currentMiningReward;
+			CurrentMinimumTransactionFee = currentMinimumTransactionFee;
 		}
 
-		// **********
 		public int CurrentDifficulty { get; set; }
 
-		public decimal CurrentBaseFeePerGas { get; set; }
+		// **********
+		public double CurrentMiningReward { get; set; }
+
+		public double CurrentMinimumTransactionFee { get; set; }
 		// **********
 
 		// **********
-		public readonly System.Collections.Generic.List<Block> _blocks;
+		private readonly System.Collections.Generic.List<Block> _blocks;
 
 		public System.Collections.Generic.IReadOnlyList<Block> Blocks
 		{
@@ -38,7 +39,7 @@ namespace Client.Step08
 		// **********
 
 		// **********
-		private readonly System.Collections.Generic.List<Transaction> _pendingTransactions;
+		private System.Collections.Generic.List<Transaction> _pendingTransactions;
 
 		public System.Collections.Generic.IReadOnlyList<Transaction> PendingTransactions
 		{
@@ -49,15 +50,38 @@ namespace Client.Step08
 		}
 		// **********
 
-		//private Block CreateGenesisBlock()
-		//{
-		//	var genesisBlock =
-		//		CreateEmptyBlock();
+		// **********
+		public bool AddTransaction(Transaction transaction)
+		{
+			if (transaction.Fee < CurrentMinimumTransactionFee)
+			{
+				return false;
+			}
 
-		//	return genesisBlock;
-		//}
+			switch (transaction.Type)
+			{
+				case TransactionType.Withdrawing:
+				case TransactionType.Transferring:
+				{
+					double senderBalance =
+						GetAccountBalance(accountAddress: transaction.SenderAccountAddress!);
 
-		private Block CreateEmptyBlock()
+					if (senderBalance < transaction.Amount)
+					{
+						return false;
+					}
+
+					break;
+				}
+			}
+
+			_pendingTransactions.Add(transaction);
+
+			return true;
+		}
+		// **********
+
+		private Block GetNewBlock()
 		{
 			Block? parentBlock = null;
 			int blockNumber = Blocks.Count;
@@ -69,90 +93,80 @@ namespace Client.Step08
 			}
 
 			var newBlock =
-				new Block(blockNumber: blockNumber, difficulty: CurrentDifficulty,
-				baseFeePerGas: CurrentBaseFeePerGas, parentHash: parentBlock?.MixHash);
-
-			_blocks.Add(newBlock);
+				new Block(blockNumber: blockNumber,
+				difficulty: CurrentDifficulty, parentHash: parentBlock?.MixHash);
 
 			return newBlock;
 		}
 
-		public void AddTransaction(Transaction transaction)
+		public Block Mine(string accountAddress)
 		{
-			_pendingTransactions.Add(transaction);
-		}
-
-		public void RemoveTooOldPendingTransaction()
-		{
-			var oldTime =
-				Infrastructure.Utility.Now.AddDays(-1);
-
-			var transactions =
-				_pendingTransactions
-				.Where(current => current.Timestamp < oldTime)
-				.ToList();
-
-			foreach (var transaction in transactions)
-			{
-				_pendingTransactions.Remove(transaction);
-			}
-		}
-
-		public Block? Mine(string minerAccountAddress)
-		{
-			if (_pendingTransactions == null)
-			{
-				return null;
-			}
-
-			//if (block.IsMined())
-			//{
-			//	return null;
-			//}
-
-			CreateEmptyBlock();
-
 			var block =
-				Blocks[Blocks.Count - 1];
+				GetNewBlock();
 
-			for (int index = _pendingTransactions.Count - 1; index >= 0; index--)
+			// **************************************************
+			double totalTransactionFee = 0;
+
+			foreach (var currentTransaction in PendingTransactions)
 			{
-				var transaction =
-					_pendingTransactions[index];
-
-				var result =
-					block.AddTransaction(transaction);
-
-				if (result)
-				{
-					_pendingTransactions.Remove(transaction);
-				}
+				block.AddTransaction(currentTransaction);
+				totalTransactionFee += currentTransaction.Fee;
 			}
+
+			double totalAmountForMiner =
+				CurrentMiningReward + totalTransactionFee;
+
+			var minerTransaction =
+				new Transaction(fee: 0,
+				amount: totalAmountForMiner,
+				type: TransactionType.Mining,
+				recipientAccountAddress: accountAddress);
+
+			block.AddTransaction(minerTransaction);
+			// **************************************************
 
 			block.Mine();
 
-			// **********
-			var gift =
-				block.GetTotalGasFee() * 90 / 100;
+			_blocks.Add(block);
 
-			var newTransaction =
-				new Transaction(type: TransactionType.Mining, amount: gift,
-				feePerGas: CurrentBaseFeePerGas, recipientAccountAddress: minerAccountAddress);
-
-			AddTransaction(newTransaction);
-			// **********
+			_pendingTransactions =
+				new System.Collections.Generic.List<Transaction>();
 
 			return block;
 		}
 
-		public decimal GetAccountBalance(string accountAddress)
+		public bool IsValid()
+		{
+			for (int index = 1; index <= _blocks.Count - 1; index++)
+			{
+				var currentBlock = _blocks[index];
+				var parentBlock = _blocks[index - 1];
+
+				var currentMixHash =
+					currentBlock.CalculateMixHash();
+
+				if (currentBlock.MixHash != currentMixHash)
+				{
+					return false;
+				}
+
+				if (currentBlock.ParentHash != parentBlock.MixHash)
+				{
+					return false;
+				}
+			}
+
+			return true;
+		}
+
+		public double GetAccountBalance(string accountAddress)
 		{
 			if (IsValid() == false)
 			{
 				return 0;
 			}
 
-			decimal balance = 0;
+			double balance = 0;
 
 			foreach (var block in _blocks)
 			{
@@ -186,30 +200,6 @@ namespace Client.Step08
 			// **********
 
 			return balance;
-		}
-
-		public bool IsValid()
-		{
-			for (int index = 1; index <= _blocks.Count - 1; index++)
-			{
-				var currentBlock = _blocks[index];
-				var parentBlock = _blocks[index - 1];
-
-				var currentMixHash =
-					currentBlock.CalculateMixHash();
-
-				if (currentBlock.MixHash != currentMixHash)
-				{
-					return false;
-				}
-
-				if (currentBlock.ParentHash != parentBlock.MixHash)
-				{
-					return false;
-				}
-			}
-
-			return true;
 		}
 
 		public override string ToString()

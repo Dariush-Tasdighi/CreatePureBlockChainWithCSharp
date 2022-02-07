@@ -15,9 +15,9 @@
 			// **********
 		}
 
-		public int BlockNumber { get; }
-
 		public int Difficulty { get; }
+
+		public int BlockNumber { get; }
 
 		public string? ParentHash { get; }
 

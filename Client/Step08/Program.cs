@@ -8,13 +8,13 @@
 
 		public static void Main()
 		{
-			System.Console.WriteLine("Step (7)");
+			System.Console.WriteLine("Step (8)");
 
 			// **************************************************
-			var dariushTasdighiAccount =
+			var saraAhmadiAccount =
 				new Account(address: "1")
 				{
-					FullName = "Dariush Tasdighi",
+					FullName = "Sara Ahmadi",
 				};
 
 			var aliRezaAlaviAccount =
@@ -23,47 +23,44 @@
 					FullName = "Ali Reza Alavi",
 				};
 
-			var saraAhmadiAccount =
+			var dariushTasdighiAccount =
 				new Account(address: "3")
 				{
-					FullName = "Sara Ahmadi",
+					FullName = "Dariush Tasdighi",
 				};
 			// **************************************************
 
 			var contract =
-				new Contract(currentDifficulty: 2,
-				currentBaseFeePerGas: (decimal)0.5);
+				new Contract
+				(initialDifficulty: 2,
+				currentMiningReward: 6.25,
+				currentMinimumTransactionFee: 0.1);
 
 			Transaction transaction;
 
 			// **************************************************
 			transaction =
-				new Transaction(amount: 10,
-				feePerGas: (decimal)0.5,
-				type: TransactionType.Charging,
+				new Transaction(fee: 0.11,
+				amount: 100, type: TransactionType.Charging,
+				recipientAccountAddress: saraAhmadiAccount.Address);
+
+			contract.AddTransaction(transaction);
+			// **************************************************
+
+			// **************************************************
+			transaction =
+				new Transaction(fee: 0.12,
+				amount: 200, type: TransactionType.Charging,
+				recipientAccountAddress: aliRezaAlaviAccount.Address);
+
+			contract.AddTransaction(transaction);
+			// **************************************************
+
+			// **************************************************
+			transaction =
+				new Transaction(fee: 0.13,
+				amount: 300, type: TransactionType.Charging,
 				recipientAccountAddress: dariushTasdighiAccount.Address);
-
-			contract.AddTransaction(transaction);
-			// **************************************************
-
-			// **************************************************
-			transaction =
-				new Transaction(amount: 20,
-				feePerGas: (decimal)0.6,
-				type: TransactionType.Charging,
-				recipientAccountAddress: dariushTasdighiAccount.Address,
-				senderAccountAddress: aliRezaAlaviAccount.Address);
-
-			contract.AddTransaction(transaction);
-			// **************************************************
-
-			// **************************************************
-			transaction =
-				new Transaction(amount: 5,
-				feePerGas: (decimal)0.4,
-				type: TransactionType.Charging,
-				recipientAccountAddress: saraAhmadiAccount.Address,
-				senderAccountAddress: dariushTasdighiAccount.Address);
 
 			contract.AddTransaction(transaction);
 			// **************************************************
@@ -71,14 +68,14 @@
 			// **************************************************
 			// Step (1)
 			// **************************************************
-			System.Console.WriteLine(contract.ToString());
+			System.Console.WriteLine(contract);
 
-			decimal dariushTasdighiBalance =
+			double dariushTasdighiBalance =
 				contract.GetAccountBalance
 				(accountAddress: dariushTasdighiAccount.Address);
 
 			System.Console.WriteLine
-				($"{dariushTasdighiAccount.FullName} Balance: {dariushTasdighiBalance.ToString("#,##0.00")}");
+				($"{dariushTasdighiAccount.FullName} Balance: {dariushTasdighiBalance}");
 			// **************************************************
 
 			// **************************************************
@@ -86,64 +83,14 @@
 			// **************************************************
 			//contract.Mine(dariushTasdighiAccount.Address);
 
-			//System.Console.WriteLine(contract.ToString());
+			//System.Console.WriteLine(contract);
 
-			//decimal dariushTasdighiBalance =
+			//double dariushTasdighiBalance =
 			//	contract.GetAccountBalance
 			//	(accountAddress: dariushTasdighiAccount.Address);
 
 			//System.Console.WriteLine
-			//	($"{dariushTasdighiAccount.FullName} Balance: {dariushTasdighiBalance.ToString("#,##0.00")}");
-			// **************************************************
-
-			// **************************************************
-			// Step (3)
-			// **************************************************
-			//contract.Mine(dariushTasdighiAccount.Address);
-
-			//transaction =
-			//	new Transaction(amount: 15,
-			//	feePerGas: (decimal)0.7,
-			//	type: TransactionType.Charging,
-			//	recipientAccountAddress: dariushTasdighiAccount.Address,
-			//	senderAccountAddress: aliRezaAlaviAccount.Address);
-
-			//contract.AddTransaction(transaction);
-
-			//System.Console.WriteLine(contract.ToString());
-
-			//decimal dariushTasdighiBalance =
-			//	contract.GetAccountBalance
-			//	(accountAddress: dariushTasdighiAccount.Address);
-
-			//System.Console.WriteLine
-			//	($"{dariushTasdighiAccount.FullName} Balance: {dariushTasdighiBalance.ToString("#,##0.00")}");
-			// **************************************************
-
-			// **************************************************
-			// Step (4)
-			// **************************************************
-			//contract.Mine(dariushTasdighiAccount.Address);
-
-			//transaction =
-			//	new Transaction(amount: 15,
-			//	feePerGas: (decimal)0.7,
-			//	type: TransactionType.Charging,
-			//	recipientAccountAddress: dariushTasdighiAccount.Address,
-			//	senderAccountAddress: aliRezaAlaviAccount.Address);
-
-			//contract.AddTransaction(transaction);
-
-			//contract.Mine(dariushTasdighiAccount.Address);
-
-			//System.Console.WriteLine(contract.ToString());
-
-			//decimal dariushTasdighiBalance =
-			//	contract.GetAccountBalance
-			//	(accountAddress: dariushTasdighiAccount.Address);
-
-			//System.Console.WriteLine
-			//	($"{dariushTasdighiAccount.FullName} Balance: {dariushTasdighiBalance.ToString("#,##0.00")}");
+			//	($"{dariushTasdighiAccount.FullName} Balance: {dariushTasdighiBalance}");
 			// **************************************************
 		}
 	}

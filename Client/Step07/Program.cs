@@ -76,14 +76,14 @@
 			// **************************************************
 			// Step (1)
 			// **************************************************
-			//System.Console.WriteLine(contract);
+			System.Console.WriteLine(contract);
 
-			//int dariushTasdighiBalance =
-			//	contract.GetAccountBalance
-			//	(accountAddress: dariushTasdighiAccount.Address);
+			int dariushTasdighiBalance =
+				contract.GetAccountBalance
+				(accountAddress: dariushTasdighiAccount.Address);
 
-			//System.Console.WriteLine
-			//	($"{dariushTasdighiAccount.FullName} Balance: {dariushTasdighiBalance}");
+			System.Console.WriteLine
+				($"{dariushTasdighiAccount.FullName} Balance: {dariushTasdighiBalance}");
 			// **************************************************
 
 			// **************************************************
@@ -135,34 +135,34 @@
 			// **************************************************
 			// Step (4)
 			// **************************************************
-			contract.Mine();
+			//contract.Mine();
 
-			transaction =
-				new Transaction(amount: 20,
-				type: TransactionType.Transferring,
-				senderAccountAddress: aliRezaAlaviAccount.Address,
-				recipientAccountAddress: dariushTasdighiAccount.Address);
+			//transaction =
+			//	new Transaction(amount: 20,
+			//	type: TransactionType.Transferring,
+			//	senderAccountAddress: aliRezaAlaviAccount.Address,
+			//	recipientAccountAddress: dariushTasdighiAccount.Address);
 
-			contract.AddTransaction(transaction);
+			//contract.AddTransaction(transaction);
 
-			transaction =
-				new Transaction(amount: 5,
-				type: TransactionType.Transferring,
-				senderAccountAddress: dariushTasdighiAccount.Address,
-				recipientAccountAddress: saraAhmadiAccount.Address);
+			//transaction =
+			//	new Transaction(amount: 5,
+			//	type: TransactionType.Transferring,
+			//	senderAccountAddress: dariushTasdighiAccount.Address,
+			//	recipientAccountAddress: saraAhmadiAccount.Address);
 
-			contract.AddTransaction(transaction);
+			//contract.AddTransaction(transaction);
 
-			contract.Mine();
+			//contract.Mine();
 
-			System.Console.WriteLine(contract);
+			//System.Console.WriteLine(contract);
 
-			int dariushTasdighiBalance =
-				contract.GetAccountBalance
-				(accountAddress: dariushTasdighiAccount.Address);
+			//int dariushTasdighiBalance =
+			//	contract.GetAccountBalance
+			//	(accountAddress: dariushTasdighiAccount.Address);
 
-			System.Console.WriteLine
-				($"{dariushTasdighiAccount.FullName} Balance: {dariushTasdighiBalance}");
+			//System.Console.WriteLine
+			//	($"{dariushTasdighiAccount.FullName} Balance: {dariushTasdighiBalance}");
 			// **************************************************
 		}
 	}

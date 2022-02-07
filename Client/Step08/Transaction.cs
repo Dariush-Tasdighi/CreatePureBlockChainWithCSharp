@@ -2,24 +2,82 @@
 {
 	public class Transaction : object
 	{
-		public Transaction(TransactionType type, decimal amount, decimal feePerGas,
-			string recipientAccountAddress, string? senderAccountAddress = null) : base()
+		public Transaction
+			(double fee,
+			double amount,
+			TransactionType type,
+			string? senderAccountAddress = null,
+			string? recipientAccountAddress = null) : base()
 		{
-			Id = System.Guid.NewGuid();
-			Timestamp = Infrastructure.Utility.Now;
+			switch (type)
+			{
+				case TransactionType.Mining:
+				case TransactionType.Charging:
+				{
+					senderAccountAddress = null;
 
+					if (recipientAccountAddress == null)
+					{
+						throw new System.ArgumentNullException
+							(paramName: nameof(recipientAccountAddress));
+					}
+
+					break;
+				}
+
+				case TransactionType.Withdrawing:
+				{
+					recipientAccountAddress = null;
+
+					if (senderAccountAddress == null)
+					{
+						throw new System.ArgumentNullException
+							(paramName: nameof(senderAccountAddress));
+					}
+
+					break;
+				}
+
+				case TransactionType.Transferring:
+				{
+					if (senderAccountAddress == null)
+					{
+						throw new System.ArgumentNullException
+							(paramName: nameof(senderAccountAddress));
+					}
+					else
+					{
+						if (recipientAccountAddress == null)
+						{
+							throw new System.ArgumentNullException
+								(paramName: nameof(recipientAccountAddress));
+						}
+					}
+
+					break;
+				}
+			}
+
+			Id =
+				System.Guid.NewGuid();
+
+			Timestamp =
+				Infrastructure.Utility.Now;
+
+			Fee = fee;
 			Type = type;
 			Amount = amount;
-			FeePerGas = feePerGas;
 			SenderAccountAddress = senderAccountAddress;
 			RecipientAccountAddress = recipientAccountAddress;
 		}
 
+		// **********
+		public double Fee { get; }
+
+		public double Amount { get; }
+		// **********
+
 		public System.Guid Id { get; }
-
-		public decimal Amount { get; }
-
-		public decimal FeePerGas { get; }
 
 		public TransactionType Type { get; }
 
@@ -27,7 +85,7 @@
 
 		public string? SenderAccountAddress { get; }
 
-		public string RecipientAccountAddress { get; }
+		public string? RecipientAccountAddress { get; }
 
 		public override string ToString()
 		{
