@@ -46,10 +46,19 @@
 
 			// **************************************************
 			transaction =
+				new Transaction(amount: 50,
+				type: TransactionType.Charging,
+				recipientAccountAddress: aliRezaAlaviAccount.Address);
+
+			contract.AddTransaction(transaction);
+			// **************************************************
+
+			// **************************************************
+			transaction =
 				new Transaction(amount: 20,
 				type: TransactionType.Transferring,
-				recipientAccountAddress: dariushTasdighiAccount.Address,
-				senderAccountAddress: aliRezaAlaviAccount.Address);
+				senderAccountAddress: aliRezaAlaviAccount.Address,
+				recipientAccountAddress: dariushTasdighiAccount.Address);
 
 			contract.AddTransaction(transaction);
 			// **************************************************
@@ -58,8 +67,8 @@
 			transaction =
 				new Transaction(amount: 5,
 				type: TransactionType.Transferring,
-				recipientAccountAddress: saraAhmadiAccount.Address,
-				senderAccountAddress: dariushTasdighiAccount.Address);
+				senderAccountAddress: dariushTasdighiAccount.Address,
+				recipientAccountAddress: saraAhmadiAccount.Address);
 
 			contract.AddTransaction(transaction);
 			// **************************************************
@@ -98,10 +107,18 @@
 			//contract.Mine();
 
 			//transaction =
-			//	new Transaction(amount: 15,
+			//	new Transaction(amount: 20,
 			//	type: TransactionType.Transferring,
-			//	recipientAccountAddress: dariushTasdighiAccount.Address,
-			//	senderAccountAddress: aliRezaAlaviAccount.Address);
+			//	senderAccountAddress: aliRezaAlaviAccount.Address,
+			//	recipientAccountAddress: dariushTasdighiAccount.Address);
+
+			//contract.AddTransaction(transaction);
+
+			//transaction =
+			//	new Transaction(amount: 5,
+			//	type: TransactionType.Transferring,
+			//	senderAccountAddress: dariushTasdighiAccount.Address,
+			//	recipientAccountAddress: saraAhmadiAccount.Address);
 
 			//contract.AddTransaction(transaction);
 
@@ -121,20 +138,22 @@
 			//contract.Mine();
 
 			//transaction =
-			//	new Transaction(amount: 15,
+			//	new Transaction(amount: 20,
 			//	type: TransactionType.Transferring,
-			//	recipientAccountAddress: dariushTasdighiAccount.Address,
-			//	senderAccountAddress: aliRezaAlaviAccount.Address);
+			//	senderAccountAddress: aliRezaAlaviAccount.Address,
+			//	recipientAccountAddress: dariushTasdighiAccount.Address);
 
 			//contract.AddTransaction(transaction);
 
 			//transaction =
 			//	new Transaction(amount: 5,
 			//	type: TransactionType.Transferring,
-			//	recipientAccountAddress: aliRezaAlaviAccount.Address,
-			//	senderAccountAddress: dariushTasdighiAccount.Address);
+			//	senderAccountAddress: dariushTasdighiAccount.Address,
+			//	recipientAccountAddress: saraAhmadiAccount.Address);
 
 			//contract.AddTransaction(transaction);
+
+			//contract.Mine();
 
 			//System.Console.WriteLine(contract);
 

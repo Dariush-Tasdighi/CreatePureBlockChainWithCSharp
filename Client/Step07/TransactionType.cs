@@ -13,7 +13,7 @@
 		Charging = 1,
 
 		/// <summary>
-		/// دریافت
+		/// برداشت
 		/// </summary>
 		Withdrawing = 2,
 

@@ -8,13 +8,56 @@
 			string? recipientAccountAddress = null) : base()
 		{
 			// **********
-			if ((senderAccountAddress == null) &&
-				(recipientAccountAddress == null))
+			switch (type)
 			{
-				string errorMessage =
-					$"Both {nameof(senderAccountAddress)} and {nameof(recipientAccountAddress)} can not be null!"
+				// گیرنده مهم است
+				case TransactionType.Mining:
+				case TransactionType.Charging:
+				{
+					senderAccountAddress = null;
 
-				throw new System.ArgumentNullException();
+					if (recipientAccountAddress == null)
+					{
+						throw new System.ArgumentNullException
+							(paramName: nameof(recipientAccountAddress));
+					}
+
+					break;
+				}
+
+				// فرستنده مهم است
+				case TransactionType.Withdrawing:
+				{
+					recipientAccountAddress = null;
+
+					if (senderAccountAddress == null)
+					{
+						throw new System.ArgumentNullException
+							(paramName: nameof(senderAccountAddress));
+					}
+
+					break;
+				}
+
+				// هر دو مهم هستند
+				case TransactionType.Transferring:
+				{
+					if (senderAccountAddress == null)
+					{
+						throw new System.ArgumentNullException
+							(paramName: nameof(senderAccountAddress));
+					}
+					else
+					{
+						if (recipientAccountAddress == null)
+						{
+							throw new System.ArgumentNullException
+								(paramName: nameof(recipientAccountAddress));
+						}
+					}
+
+					break;
+				}
 			}
 			// **********
 

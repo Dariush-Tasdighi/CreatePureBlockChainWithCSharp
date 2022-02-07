@@ -48,6 +48,25 @@ namespace Client.Step07
 
 		public void AddTransaction(Transaction transaction)
 		{
+			// **********
+			switch (transaction.Type)
+			{
+				case TransactionType.Withdrawing:
+				case TransactionType.Transferring:
+				{
+					int senderBalance =
+							GetAccountBalance(accountAddress: transaction.SenderAccountAddress!);
+
+					if (senderBalance < transaction.Amount)
+					{
+						return;
+					}
+
+					break;
+				}
+			}
+			// **********
+
 			_pendingTransactions.Add(transaction);
 		}
 
