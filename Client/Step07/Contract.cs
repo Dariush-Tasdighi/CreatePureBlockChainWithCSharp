@@ -91,7 +91,7 @@ namespace Client.Step07
 		// **********
 
 		// **********
-		public Block? Mine()
+		public Block Mine()
 		{
 			var block =
 				GetNewBlock();

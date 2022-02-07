@@ -8,7 +8,7 @@
 		Mining = 0,
 
 		/// <summary>
-		/// پرداخت
+		/// واریز
 		/// </summary>
 		Charging = 1,
 
