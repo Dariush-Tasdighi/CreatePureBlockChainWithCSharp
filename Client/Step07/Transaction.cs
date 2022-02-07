@@ -3,9 +3,21 @@
 	public class Transaction : object
 	{
 		public Transaction(TransactionType type,
-			int amount, string recipientAccountAddress,
-			string? senderAccountAddress = null) : base()
+			int amount,
+			string? senderAccountAddress = null,
+			string? recipientAccountAddress = null) : base()
 		{
+			// **********
+			if ((senderAccountAddress == null) &&
+				(recipientAccountAddress == null))
+			{
+				string errorMessage =
+					$"Both {nameof(senderAccountAddress)} and {nameof(recipientAccountAddress)} can not be null!"
+
+				throw new System.ArgumentNullException();
+			}
+			// **********
+
 			Id =
 				System.Guid.NewGuid();
 
@@ -30,7 +42,9 @@
 
 		public string? SenderAccountAddress { get; }
 
-		public string RecipientAccountAddress { get; }
+		// **********
+		public string? RecipientAccountAddress { get; }
+		// **********
 
 		public override string ToString()
 		{

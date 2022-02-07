@@ -2,8 +2,24 @@
 {
 	public enum TransactionType : int
 	{
+		/// <summary>
+		/// استخراج
+		/// </summary>
 		Mining = 0,
+
+		/// <summary>
+		/// پرداخت
+		/// </summary>
 		Charging = 1,
-		Transferring = 2,
+
+		/// <summary>
+		/// دریافت
+		/// </summary>
+		Withdrawing = 2,
+
+		/// <summary>
+		/// انتقال
+		/// </summary>
+		Transferring = 3,
 	}
 }

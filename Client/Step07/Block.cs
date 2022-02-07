@@ -50,6 +50,7 @@
 		}
 		// **********
 
+		// **********
 		public bool IsMined()
 		{
 			// **********
@@ -65,6 +66,7 @@
 				return true;
 			}
 		}
+		// **********
 
 		public void Mine()
 		{
@@ -77,12 +79,18 @@
 				Infrastructure.Utility.Now;
 
 			// **********
+			// **********
+			// **********
 			//var leadingZeros =
 			//	"".PadLeft(totalWidth: Difficulty, paddingChar: '0');
 			// **********
 
+			// **********
 			var leadingZeros =
 				new string(c: '0', count: Difficulty);
+			// **********
+			// **********
+			// **********
 
 			var startTime =
 				Infrastructure.Utility.Now;

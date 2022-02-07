@@ -31,7 +31,7 @@
 			// **************************************************
 
 			var contract =
-				new Contract(currentDifficulty: 2);
+				new Contract(initialDifficulty: 2);
 
 			Transaction transaction;
 
