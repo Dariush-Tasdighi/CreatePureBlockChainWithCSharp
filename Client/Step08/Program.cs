@@ -36,6 +36,7 @@
 				(initialDifficulty: 2,
 				currentMiningReward: 6.25,
 				currentMinimumTransactionFee: 0.1);
+			// **************************************************
 
 			// **************************************************
 			// **************************************************
@@ -88,7 +89,8 @@
 			// **************************************************
 			// Step (2)
 			// **************************************************
-			//contract.Mine(dariushTasdighiAccount.Address);
+			//contract.Mine
+			//	(accountAddress: dariushTasdighiAccount.Address);
 
 			//System.Console.WriteLine(contract);
 
