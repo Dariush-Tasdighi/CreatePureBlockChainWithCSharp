@@ -186,9 +186,6 @@
 				}
 			}
 
-			// **********
-			// مهم
-			// **********
 			foreach (var transaction in _pendingTransactions)
 			{
 				if (transaction.SenderAccountAddress == accountAddress)
@@ -197,7 +194,6 @@
 						transaction.Amount;
 				}
 			}
-			// **********
 
 			return balance;
 		}

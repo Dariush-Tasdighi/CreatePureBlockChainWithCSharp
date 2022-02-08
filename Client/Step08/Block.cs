@@ -9,10 +9,8 @@
 			ParentHash = parentHash;
 			BlockNumber = blockNumber;
 
-			// **********
 			_transactions =
 				new System.Collections.Generic.List<Transaction>();
-			// **********
 		}
 
 		public int Difficulty { get; }
